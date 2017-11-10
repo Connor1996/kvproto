@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package importpb;
+
+service Import {
+    rpc Write(stream WriteRequest) returns (WriteResponse) {}
+    rpc Flush(FlushRequest) returns (FlushResponse) {}
+}
+
+message Mutation {
+    enum OP {
+        Put = 0;
+    }
+    OP op = 1;
+    bytes key = 2;
+    bytes value = 3;
+}
+
+message WriteBatch {
+    uint64 commit_ts = 1;
+    repeated Mutation mutation = 2;
+}
+
+message WriteRequest {
+    bytes uuid = 1;
+    WriteBatch batch  = 2;
+}
+
+message WriteResponse {
+}
+
+message FlushRequest {
+    bytes uuid = 1;
+}
+
+message FlushResponse {
+}
