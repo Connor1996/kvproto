@@ -346,7 +346,7 @@ impl ::protobuf::reflect::ProtobufValue for Mutation_OP {
 pub struct WriteBatch {
     // message fields
     pub commit_ts: u64,
-    pub mutation: ::protobuf::RepeatedField<Mutation>,
+    pub mutations: ::protobuf::RepeatedField<Mutation>,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
@@ -393,43 +393,43 @@ impl WriteBatch {
         &mut self.commit_ts
     }
 
-    // repeated .importpb.Mutation mutation = 2;
+    // repeated .importpb.Mutation mutations = 2;
 
-    pub fn clear_mutation(&mut self) {
-        self.mutation.clear();
+    pub fn clear_mutations(&mut self) {
+        self.mutations.clear();
     }
 
     // Param is passed by value, moved
-    pub fn set_mutation(&mut self, v: ::protobuf::RepeatedField<Mutation>) {
-        self.mutation = v;
+    pub fn set_mutations(&mut self, v: ::protobuf::RepeatedField<Mutation>) {
+        self.mutations = v;
     }
 
     // Mutable pointer to the field.
-    pub fn mut_mutation(&mut self) -> &mut ::protobuf::RepeatedField<Mutation> {
-        &mut self.mutation
+    pub fn mut_mutations(&mut self) -> &mut ::protobuf::RepeatedField<Mutation> {
+        &mut self.mutations
     }
 
     // Take field
-    pub fn take_mutation(&mut self) -> ::protobuf::RepeatedField<Mutation> {
-        ::std::mem::replace(&mut self.mutation, ::protobuf::RepeatedField::new())
+    pub fn take_mutations(&mut self) -> ::protobuf::RepeatedField<Mutation> {
+        ::std::mem::replace(&mut self.mutations, ::protobuf::RepeatedField::new())
     }
 
-    pub fn get_mutation(&self) -> &[Mutation] {
-        &self.mutation
+    pub fn get_mutations(&self) -> &[Mutation] {
+        &self.mutations
     }
 
-    fn get_mutation_for_reflect(&self) -> &::protobuf::RepeatedField<Mutation> {
-        &self.mutation
+    fn get_mutations_for_reflect(&self) -> &::protobuf::RepeatedField<Mutation> {
+        &self.mutations
     }
 
-    fn mut_mutation_for_reflect(&mut self) -> &mut ::protobuf::RepeatedField<Mutation> {
-        &mut self.mutation
+    fn mut_mutations_for_reflect(&mut self) -> &mut ::protobuf::RepeatedField<Mutation> {
+        &mut self.mutations
     }
 }
 
 impl ::protobuf::Message for WriteBatch {
     fn is_initialized(&self) -> bool {
-        for v in &self.mutation {
+        for v in &self.mutations {
             if !v.is_initialized() {
                 return false;
             }
@@ -449,7 +449,7 @@ impl ::protobuf::Message for WriteBatch {
                     self.commit_ts = tmp;
                 },
                 2 => {
-                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.mutation)?;
+                    ::protobuf::rt::read_repeated_message_into(wire_type, is, &mut self.mutations)?;
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -466,7 +466,7 @@ impl ::protobuf::Message for WriteBatch {
         if self.commit_ts != 0 {
             my_size += ::protobuf::rt::value_size(1, self.commit_ts, ::protobuf::wire_format::WireTypeVarint);
         }
-        for value in &self.mutation {
+        for value in &self.mutations {
             let len = value.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         };
@@ -479,7 +479,7 @@ impl ::protobuf::Message for WriteBatch {
         if self.commit_ts != 0 {
             os.write_uint64(1, self.commit_ts)?;
         }
-        for v in &self.mutation {
+        for v in &self.mutations {
             os.write_tag(2, ::protobuf::wire_format::WireTypeLengthDelimited)?;
             os.write_raw_varint32(v.get_cached_size())?;
             v.write_to_with_cached_sizes(os)?;
@@ -534,9 +534,9 @@ impl ::protobuf::MessageStatic for WriteBatch {
                     WriteBatch::mut_commit_ts_for_reflect,
                 ));
                 fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<Mutation>>(
-                    "mutation",
-                    WriteBatch::get_mutation_for_reflect,
-                    WriteBatch::mut_mutation_for_reflect,
+                    "mutations",
+                    WriteBatch::get_mutations_for_reflect,
+                    WriteBatch::mut_mutations_for_reflect,
                 ));
                 ::protobuf::reflect::MessageDescriptor::new::<WriteBatch>(
                     "WriteBatch",
@@ -551,7 +551,7 @@ impl ::protobuf::MessageStatic for WriteBatch {
 impl ::protobuf::Clear for WriteBatch {
     fn clear(&mut self) {
         self.clear_commit_ts();
-        self.clear_mutation();
+        self.clear_mutations();
         self.unknown_fields.clear();
     }
 }
@@ -1239,30 +1239,30 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \n\x0eimportpb.proto\x12\x08importpb\"h\n\x08Mutation\x12%\n\x02op\x18\
     \x01\x20\x01(\x0e2\x15.importpb.Mutation.OPR\x02op\x12\x10\n\x03key\x18\
     \x02\x20\x01(\x0cR\x03key\x12\x14\n\x05value\x18\x03\x20\x01(\x0cR\x05va\
-    lue\"\r\n\x02OP\x12\x07\n\x03Put\x10\0\"Y\n\nWriteBatch\x12\x1b\n\tcommi\
-    t_ts\x18\x01\x20\x01(\x04R\x08commitTs\x12.\n\x08mutation\x18\x02\x20\
-    \x03(\x0b2\x12.importpb.MutationR\x08mutation\"N\n\x0cWriteRequest\x12\
-    \x12\n\x04uuid\x18\x01\x20\x01(\x0cR\x04uuid\x12*\n\x05batch\x18\x02\x20\
-    \x01(\x0b2\x14.importpb.WriteBatchR\x05batch\"\x0f\n\rWriteResponse\"\"\
-    \n\x0cFlushRequest\x12\x12\n\x04uuid\x18\x01\x20\x01(\x0cR\x04uuid\"\x0f\
-    \n\rFlushResponse2\x82\x01\n\x06Import\x12<\n\x05Write\x12\x16.importpb.\
-    WriteRequest\x1a\x17.importpb.WriteResponse\"\0(\x01\x12:\n\x05Flush\x12\
-    \x16.importpb.FlushRequest\x1a\x17.importpb.FlushResponse\"\0J\xba\x07\n\
-    \x06\x12\x04\0\0$\x01\n\x08\n\x01\x0c\x12\x03\0\0\x12\n\x08\n\x01\x02\
-    \x12\x03\x02\x08\x10\n\n\n\x02\x06\0\x12\x04\x04\0\x07\x01\n\n\n\x03\x06\
-    \0\x01\x12\x03\x04\x08\x0e\n\x0b\n\x04\x06\0\x02\0\x12\x03\x05\x04=\n\
-    \x0c\n\x05\x06\0\x02\0\x01\x12\x03\x05\x08\r\n\x0c\n\x05\x06\0\x02\0\x05\
-    \x12\x03\x05\x0e\x14\n\x0c\n\x05\x06\0\x02\0\x02\x12\x03\x05\x15!\n\x0c\
-    \n\x05\x06\0\x02\0\x03\x12\x03\x05,9\n\x0b\n\x04\x06\0\x02\x01\x12\x03\
-    \x06\x046\n\x0c\n\x05\x06\0\x02\x01\x01\x12\x03\x06\x08\r\n\x0c\n\x05\
-    \x06\0\x02\x01\x02\x12\x03\x06\x0e\x1a\n\x0c\n\x05\x06\0\x02\x01\x03\x12\
-    \x03\x06%2\n\n\n\x02\x04\0\x12\x04\t\0\x10\x01\n\n\n\x03\x04\0\x01\x12\
-    \x03\t\x08\x10\n\x0c\n\x04\x04\0\x04\0\x12\x04\n\x04\x0c\x05\n\x0c\n\x05\
-    \x04\0\x04\0\x01\x12\x03\n\t\x0b\n\r\n\x06\x04\0\x04\0\x02\0\x12\x03\x0b\
-    \x08\x10\n\x0e\n\x07\x04\0\x04\0\x02\0\x01\x12\x03\x0b\x08\x0b\n\x0e\n\
-    \x07\x04\0\x04\0\x02\0\x02\x12\x03\x0b\x0e\x0f\n\x0b\n\x04\x04\0\x02\0\
-    \x12\x03\r\x04\x0e\n\r\n\x05\x04\0\x02\0\x04\x12\x04\r\x04\x0c\x05\n\x0c\
-    \n\x05\x04\0\x02\0\x06\x12\x03\r\x04\x06\n\x0c\n\x05\x04\0\x02\0\x01\x12\
+    lue\"\r\n\x02OP\x12\x07\n\x03Put\x10\0\"[\n\nWriteBatch\x12\x1b\n\tcommi\
+    t_ts\x18\x01\x20\x01(\x04R\x08commitTs\x120\n\tmutations\x18\x02\x20\x03\
+    (\x0b2\x12.importpb.MutationR\tmutations\"N\n\x0cWriteRequest\x12\x12\n\
+    \x04uuid\x18\x01\x20\x01(\x0cR\x04uuid\x12*\n\x05batch\x18\x02\x20\x01(\
+    \x0b2\x14.importpb.WriteBatchR\x05batch\"\x0f\n\rWriteResponse\"\"\n\x0c\
+    FlushRequest\x12\x12\n\x04uuid\x18\x01\x20\x01(\x0cR\x04uuid\"\x0f\n\rFl\
+    ushResponse2\x82\x01\n\x06Import\x12<\n\x05Write\x12\x16.importpb.WriteR\
+    equest\x1a\x17.importpb.WriteResponse\"\0(\x01\x12:\n\x05Flush\x12\x16.i\
+    mportpb.FlushRequest\x1a\x17.importpb.FlushResponse\"\0J\xba\x07\n\x06\
+    \x12\x04\0\0$\x01\n\x08\n\x01\x0c\x12\x03\0\0\x12\n\x08\n\x01\x02\x12\
+    \x03\x02\x08\x10\n\n\n\x02\x06\0\x12\x04\x04\0\x07\x01\n\n\n\x03\x06\0\
+    \x01\x12\x03\x04\x08\x0e\n\x0b\n\x04\x06\0\x02\0\x12\x03\x05\x04=\n\x0c\
+    \n\x05\x06\0\x02\0\x01\x12\x03\x05\x08\r\n\x0c\n\x05\x06\0\x02\0\x05\x12\
+    \x03\x05\x0e\x14\n\x0c\n\x05\x06\0\x02\0\x02\x12\x03\x05\x15!\n\x0c\n\
+    \x05\x06\0\x02\0\x03\x12\x03\x05,9\n\x0b\n\x04\x06\0\x02\x01\x12\x03\x06\
+    \x046\n\x0c\n\x05\x06\0\x02\x01\x01\x12\x03\x06\x08\r\n\x0c\n\x05\x06\0\
+    \x02\x01\x02\x12\x03\x06\x0e\x1a\n\x0c\n\x05\x06\0\x02\x01\x03\x12\x03\
+    \x06%2\n\n\n\x02\x04\0\x12\x04\t\0\x10\x01\n\n\n\x03\x04\0\x01\x12\x03\t\
+    \x08\x10\n\x0c\n\x04\x04\0\x04\0\x12\x04\n\x04\x0c\x05\n\x0c\n\x05\x04\0\
+    \x04\0\x01\x12\x03\n\t\x0b\n\r\n\x06\x04\0\x04\0\x02\0\x12\x03\x0b\x08\
+    \x10\n\x0e\n\x07\x04\0\x04\0\x02\0\x01\x12\x03\x0b\x08\x0b\n\x0e\n\x07\
+    \x04\0\x04\0\x02\0\x02\x12\x03\x0b\x0e\x0f\n\x0b\n\x04\x04\0\x02\0\x12\
+    \x03\r\x04\x0e\n\r\n\x05\x04\0\x02\0\x04\x12\x04\r\x04\x0c\x05\n\x0c\n\
+    \x05\x04\0\x02\0\x06\x12\x03\r\x04\x06\n\x0c\n\x05\x04\0\x02\0\x01\x12\
     \x03\r\x07\t\n\x0c\n\x05\x04\0\x02\0\x03\x12\x03\r\x0c\r\n\x0b\n\x04\x04\
     \0\x02\x01\x12\x03\x0e\x04\x12\n\r\n\x05\x04\0\x02\x01\x04\x12\x04\x0e\
     \x04\r\x0e\n\x0c\n\x05\x04\0\x02\x01\x05\x12\x03\x0e\x04\t\n\x0c\n\x05\
@@ -1275,10 +1275,10 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x02\0\x12\x03\x13\x04\x19\n\r\n\x05\x04\x01\x02\0\x04\x12\x04\x13\x04\
     \x12\x14\n\x0c\n\x05\x04\x01\x02\0\x05\x12\x03\x13\x04\n\n\x0c\n\x05\x04\
     \x01\x02\0\x01\x12\x03\x13\x0b\x14\n\x0c\n\x05\x04\x01\x02\0\x03\x12\x03\
-    \x13\x17\x18\n\x0b\n\x04\x04\x01\x02\x01\x12\x03\x14\x04#\n\x0c\n\x05\
+    \x13\x17\x18\n\x0b\n\x04\x04\x01\x02\x01\x12\x03\x14\x04$\n\x0c\n\x05\
     \x04\x01\x02\x01\x04\x12\x03\x14\x04\x0c\n\x0c\n\x05\x04\x01\x02\x01\x06\
-    \x12\x03\x14\r\x15\n\x0c\n\x05\x04\x01\x02\x01\x01\x12\x03\x14\x16\x1e\n\
-    \x0c\n\x05\x04\x01\x02\x01\x03\x12\x03\x14!\"\n\n\n\x02\x04\x02\x12\x04\
+    \x12\x03\x14\r\x15\n\x0c\n\x05\x04\x01\x02\x01\x01\x12\x03\x14\x16\x1f\n\
+    \x0c\n\x05\x04\x01\x02\x01\x03\x12\x03\x14\"#\n\n\n\x02\x04\x02\x12\x04\
     \x17\0\x1a\x01\n\n\n\x03\x04\x02\x01\x12\x03\x17\x08\x14\n\x0b\n\x04\x04\
     \x02\x02\0\x12\x03\x18\x04\x13\n\r\n\x05\x04\x02\x02\0\x04\x12\x04\x18\
     \x04\x17\x16\n\x0c\n\x05\x04\x02\x02\0\x05\x12\x03\x18\x04\t\n\x0c\n\x05\

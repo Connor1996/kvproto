@@ -18,7 +18,7 @@ message Mutation {
 
 message WriteBatch {
     uint64 commit_ts = 1;
-    repeated Mutation mutation = 2;
+    repeated Mutation mutations = 2;
 }
 
 message WriteRequest {
