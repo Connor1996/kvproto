@@ -32,6 +32,20 @@ const METHOD_IMPORT_FLUSH: ::grpcio::Method<super::importpb::FlushRequest, super
     resp_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
 };
 
+const METHOD_IMPORT_UPLOAD_SST: ::grpcio::Method<super::importpb::UploadSSTRequest, super::importpb::UploadSSTResponse> = ::grpcio::Method {
+    ty: ::grpcio::MethodType::ClientStreaming,
+    name: "/importpb.Import/UploadSST",
+    req_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
+    resp_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
+};
+
+const METHOD_IMPORT_INGEST_SST: ::grpcio::Method<super::importpb::IngestSSTRequest, super::importpb::IngestSSTResponse> = ::grpcio::Method {
+    ty: ::grpcio::MethodType::Unary,
+    name: "/importpb.Import/IngestSST",
+    req_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
+    resp_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
+};
+
 pub struct ImportClient {
     client: ::grpcio::Client,
 }
@@ -66,6 +80,30 @@ impl ImportClient {
     pub fn flush_async(&self, req: super::importpb::FlushRequest) -> ::grpcio::ClientUnaryReceiver<super::importpb::FlushResponse> {
         self.flush_async_opt(req, ::grpcio::CallOption::default())
     }
+
+    pub fn upload_sst_opt(&self, opt: ::grpcio::CallOption) -> (::grpcio::ClientCStreamSender<super::importpb::UploadSSTRequest>, ::grpcio::ClientCStreamReceiver<super::importpb::UploadSSTResponse>) {
+        self.client.client_streaming(&METHOD_IMPORT_UPLOAD_SST, opt)
+    }
+
+    pub fn upload_sst(&self) -> (::grpcio::ClientCStreamSender<super::importpb::UploadSSTRequest>, ::grpcio::ClientCStreamReceiver<super::importpb::UploadSSTResponse>) {
+        self.upload_sst_opt(::grpcio::CallOption::default())
+    }
+
+    pub fn ingest_sst_opt(&self, req: super::importpb::IngestSSTRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<super::importpb::IngestSSTResponse> {
+        self.client.unary_call(&METHOD_IMPORT_INGEST_SST, req, opt)
+    }
+
+    pub fn ingest_sst(&self, req: super::importpb::IngestSSTRequest) -> ::grpcio::Result<super::importpb::IngestSSTResponse> {
+        self.ingest_sst_opt(req, ::grpcio::CallOption::default())
+    }
+
+    pub fn ingest_sst_async_opt(&self, req: super::importpb::IngestSSTRequest, opt: ::grpcio::CallOption) -> ::grpcio::ClientUnaryReceiver<super::importpb::IngestSSTResponse> {
+        self.client.unary_call_async(&METHOD_IMPORT_INGEST_SST, req, opt)
+    }
+
+    pub fn ingest_sst_async(&self, req: super::importpb::IngestSSTRequest) -> ::grpcio::ClientUnaryReceiver<super::importpb::IngestSSTResponse> {
+        self.ingest_sst_async_opt(req, ::grpcio::CallOption::default())
+    }
     pub fn spawn<F>(&self, f: F) where F: ::futures::Future<Item = (), Error = ()> + Send + 'static {
         self.client.spawn(f)
     }
@@ -74,6 +112,8 @@ impl ImportClient {
 pub trait Import {
     fn write(&self, ctx: ::grpcio::RpcContext, stream: ::grpcio::RequestStream<super::importpb::WriteRequest>, sink: ::grpcio::ClientStreamingSink<super::importpb::WriteResponse>);
     fn flush(&self, ctx: ::grpcio::RpcContext, req: super::importpb::FlushRequest, sink: ::grpcio::UnarySink<super::importpb::FlushResponse>);
+    fn upload_sst(&self, ctx: ::grpcio::RpcContext, stream: ::grpcio::RequestStream<super::importpb::UploadSSTRequest>, sink: ::grpcio::ClientStreamingSink<super::importpb::UploadSSTResponse>);
+    fn ingest_sst(&self, ctx: ::grpcio::RpcContext, req: super::importpb::IngestSSTRequest, sink: ::grpcio::UnarySink<super::importpb::IngestSSTResponse>);
 }
 
 pub fn create_import<S: Import + Send + Clone + 'static>(s: S) -> ::grpcio::Service {
@@ -85,6 +125,14 @@ pub fn create_import<S: Import + Send + Clone + 'static>(s: S) -> ::grpcio::Serv
     let instance = s.clone();
     builder = builder.add_unary_handler(&METHOD_IMPORT_FLUSH, move |ctx, req, resp| {
         instance.flush(ctx, req, resp)
+    });
+    let instance = s.clone();
+    builder = builder.add_client_streaming_handler(&METHOD_IMPORT_UPLOAD_SST, move |ctx, req, resp| {
+        instance.upload_sst(ctx, req, resp)
+    });
+    let instance = s.clone();
+    builder = builder.add_unary_handler(&METHOD_IMPORT_INGEST_SST, move |ctx, req, resp| {
+        instance.ingest_sst(ctx, req, resp)
     });
     builder.build()
 }
