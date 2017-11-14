@@ -1477,7 +1477,7 @@ impl ::protobuf::reflect::ProtobufValue for FlushResponse {
 }
 
 #[derive(PartialEq,Clone,Default)]
-pub struct SSTFileInfo {
+pub struct SSTInfo {
     // message fields
     pub uuid: ::std::vec::Vec<u8>,
     pub crc32: u32,
@@ -1491,20 +1491,20 @@ pub struct SSTFileInfo {
 }
 
 // see codegen.rs for the explanation why impl Sync explicitly
-unsafe impl ::std::marker::Sync for SSTFileInfo {}
+unsafe impl ::std::marker::Sync for SSTInfo {}
 
-impl SSTFileInfo {
-    pub fn new() -> SSTFileInfo {
+impl SSTInfo {
+    pub fn new() -> SSTInfo {
         ::std::default::Default::default()
     }
 
-    pub fn default_instance() -> &'static SSTFileInfo {
-        static mut instance: ::protobuf::lazy::Lazy<SSTFileInfo> = ::protobuf::lazy::Lazy {
+    pub fn default_instance() -> &'static SSTInfo {
+        static mut instance: ::protobuf::lazy::Lazy<SSTInfo> = ::protobuf::lazy::Lazy {
             lock: ::protobuf::lazy::ONCE_INIT,
-            ptr: 0 as *const SSTFileInfo,
+            ptr: 0 as *const SSTInfo,
         };
         unsafe {
-            instance.get(SSTFileInfo::new)
+            instance.get(SSTInfo::new)
         }
     }
 
@@ -1687,7 +1687,7 @@ impl SSTFileInfo {
     }
 }
 
-impl ::protobuf::Message for SSTFileInfo {
+impl ::protobuf::Message for SSTInfo {
     fn is_initialized(&self) -> bool {
         for v in &self.region_epoch {
             if !v.is_initialized() {
@@ -1819,12 +1819,12 @@ impl ::protobuf::Message for SSTFileInfo {
     }
 }
 
-impl ::protobuf::MessageStatic for SSTFileInfo {
-    fn new() -> SSTFileInfo {
-        SSTFileInfo::new()
+impl ::protobuf::MessageStatic for SSTInfo {
+    fn new() -> SSTInfo {
+        SSTInfo::new()
     }
 
-    fn descriptor_static(_: ::std::option::Option<SSTFileInfo>) -> &'static ::protobuf::reflect::MessageDescriptor {
+    fn descriptor_static(_: ::std::option::Option<SSTInfo>) -> &'static ::protobuf::reflect::MessageDescriptor {
         static mut descriptor: ::protobuf::lazy::Lazy<::protobuf::reflect::MessageDescriptor> = ::protobuf::lazy::Lazy {
             lock: ::protobuf::lazy::ONCE_INIT,
             ptr: 0 as *const ::protobuf::reflect::MessageDescriptor,
@@ -1834,36 +1834,36 @@ impl ::protobuf::MessageStatic for SSTFileInfo {
                 let mut fields = ::std::vec::Vec::new();
                 fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeBytes>(
                     "uuid",
-                    SSTFileInfo::get_uuid_for_reflect,
-                    SSTFileInfo::mut_uuid_for_reflect,
+                    SSTInfo::get_uuid_for_reflect,
+                    SSTInfo::mut_uuid_for_reflect,
                 ));
                 fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeUint32>(
                     "crc32",
-                    SSTFileInfo::get_crc32_for_reflect,
-                    SSTFileInfo::mut_crc32_for_reflect,
+                    SSTInfo::get_crc32_for_reflect,
+                    SSTInfo::mut_crc32_for_reflect,
                 ));
                 fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeUint64>(
                     "length",
-                    SSTFileInfo::get_length_for_reflect,
-                    SSTFileInfo::mut_length_for_reflect,
+                    SSTInfo::get_length_for_reflect,
+                    SSTInfo::mut_length_for_reflect,
                 ));
                 fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
                     "cf_name",
-                    SSTFileInfo::get_cf_name_for_reflect,
-                    SSTFileInfo::mut_cf_name_for_reflect,
+                    SSTInfo::get_cf_name_for_reflect,
+                    SSTInfo::mut_cf_name_for_reflect,
                 ));
                 fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeUint64>(
                     "region_id",
-                    SSTFileInfo::get_region_id_for_reflect,
-                    SSTFileInfo::mut_region_id_for_reflect,
+                    SSTInfo::get_region_id_for_reflect,
+                    SSTInfo::mut_region_id_for_reflect,
                 ));
                 fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<super::metapb::RegionEpoch>>(
                     "region_epoch",
-                    SSTFileInfo::get_region_epoch_for_reflect,
-                    SSTFileInfo::mut_region_epoch_for_reflect,
+                    SSTInfo::get_region_epoch_for_reflect,
+                    SSTInfo::mut_region_epoch_for_reflect,
                 ));
-                ::protobuf::reflect::MessageDescriptor::new::<SSTFileInfo>(
-                    "SSTFileInfo",
+                ::protobuf::reflect::MessageDescriptor::new::<SSTInfo>(
+                    "SSTInfo",
                     fields,
                     file_descriptor_proto()
                 )
@@ -1872,7 +1872,7 @@ impl ::protobuf::MessageStatic for SSTFileInfo {
     }
 }
 
-impl ::protobuf::Clear for SSTFileInfo {
+impl ::protobuf::Clear for SSTInfo {
     fn clear(&mut self) {
         self.clear_uuid();
         self.clear_crc32();
@@ -1884,22 +1884,22 @@ impl ::protobuf::Clear for SSTFileInfo {
     }
 }
 
-impl ::std::fmt::Debug for SSTFileInfo {
+impl ::std::fmt::Debug for SSTInfo {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         ::protobuf::text_format::fmt(self, f)
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for SSTFileInfo {
+impl ::protobuf::reflect::ProtobufValue for SSTInfo {
     fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
         ::protobuf::reflect::ProtobufValueRef::Message(self)
     }
 }
 
 #[derive(PartialEq,Clone,Default)]
-pub struct UploadSSTRequest {
+pub struct UploadRequest {
     // message fields
-    pub info: ::protobuf::SingularPtrField<SSTFileInfo>,
+    pub info: ::protobuf::SingularPtrField<SSTInfo>,
     pub data: ::std::vec::Vec<u8>,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
@@ -1907,24 +1907,24 @@ pub struct UploadSSTRequest {
 }
 
 // see codegen.rs for the explanation why impl Sync explicitly
-unsafe impl ::std::marker::Sync for UploadSSTRequest {}
+unsafe impl ::std::marker::Sync for UploadRequest {}
 
-impl UploadSSTRequest {
-    pub fn new() -> UploadSSTRequest {
+impl UploadRequest {
+    pub fn new() -> UploadRequest {
         ::std::default::Default::default()
     }
 
-    pub fn default_instance() -> &'static UploadSSTRequest {
-        static mut instance: ::protobuf::lazy::Lazy<UploadSSTRequest> = ::protobuf::lazy::Lazy {
+    pub fn default_instance() -> &'static UploadRequest {
+        static mut instance: ::protobuf::lazy::Lazy<UploadRequest> = ::protobuf::lazy::Lazy {
             lock: ::protobuf::lazy::ONCE_INIT,
-            ptr: 0 as *const UploadSSTRequest,
+            ptr: 0 as *const UploadRequest,
         };
         unsafe {
-            instance.get(UploadSSTRequest::new)
+            instance.get(UploadRequest::new)
         }
     }
 
-    // .importpb.SSTFileInfo info = 1;
+    // .importpb.SSTInfo info = 1;
 
     pub fn clear_info(&mut self) {
         self.info.clear();
@@ -1935,13 +1935,13 @@ impl UploadSSTRequest {
     }
 
     // Param is passed by value, moved
-    pub fn set_info(&mut self, v: SSTFileInfo) {
+    pub fn set_info(&mut self, v: SSTInfo) {
         self.info = ::protobuf::SingularPtrField::some(v);
     }
 
     // Mutable pointer to the field.
     // If field is not initialized, it is initialized with default value first.
-    pub fn mut_info(&mut self) -> &mut SSTFileInfo {
+    pub fn mut_info(&mut self) -> &mut SSTInfo {
         if self.info.is_none() {
             self.info.set_default();
         }
@@ -1949,19 +1949,19 @@ impl UploadSSTRequest {
     }
 
     // Take field
-    pub fn take_info(&mut self) -> SSTFileInfo {
-        self.info.take().unwrap_or_else(|| SSTFileInfo::new())
+    pub fn take_info(&mut self) -> SSTInfo {
+        self.info.take().unwrap_or_else(|| SSTInfo::new())
     }
 
-    pub fn get_info(&self) -> &SSTFileInfo {
-        self.info.as_ref().unwrap_or_else(|| SSTFileInfo::default_instance())
+    pub fn get_info(&self) -> &SSTInfo {
+        self.info.as_ref().unwrap_or_else(|| SSTInfo::default_instance())
     }
 
-    fn get_info_for_reflect(&self) -> &::protobuf::SingularPtrField<SSTFileInfo> {
+    fn get_info_for_reflect(&self) -> &::protobuf::SingularPtrField<SSTInfo> {
         &self.info
     }
 
-    fn mut_info_for_reflect(&mut self) -> &mut ::protobuf::SingularPtrField<SSTFileInfo> {
+    fn mut_info_for_reflect(&mut self) -> &mut ::protobuf::SingularPtrField<SSTInfo> {
         &mut self.info
     }
 
@@ -2000,7 +2000,7 @@ impl UploadSSTRequest {
     }
 }
 
-impl ::protobuf::Message for UploadSSTRequest {
+impl ::protobuf::Message for UploadRequest {
     fn is_initialized(&self) -> bool {
         for v in &self.info {
             if !v.is_initialized() {
@@ -2084,12 +2084,12 @@ impl ::protobuf::Message for UploadSSTRequest {
     }
 }
 
-impl ::protobuf::MessageStatic for UploadSSTRequest {
-    fn new() -> UploadSSTRequest {
-        UploadSSTRequest::new()
+impl ::protobuf::MessageStatic for UploadRequest {
+    fn new() -> UploadRequest {
+        UploadRequest::new()
     }
 
-    fn descriptor_static(_: ::std::option::Option<UploadSSTRequest>) -> &'static ::protobuf::reflect::MessageDescriptor {
+    fn descriptor_static(_: ::std::option::Option<UploadRequest>) -> &'static ::protobuf::reflect::MessageDescriptor {
         static mut descriptor: ::protobuf::lazy::Lazy<::protobuf::reflect::MessageDescriptor> = ::protobuf::lazy::Lazy {
             lock: ::protobuf::lazy::ONCE_INIT,
             ptr: 0 as *const ::protobuf::reflect::MessageDescriptor,
@@ -2097,18 +2097,18 @@ impl ::protobuf::MessageStatic for UploadSSTRequest {
         unsafe {
             descriptor.get(|| {
                 let mut fields = ::std::vec::Vec::new();
-                fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<SSTFileInfo>>(
+                fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<SSTInfo>>(
                     "info",
-                    UploadSSTRequest::get_info_for_reflect,
-                    UploadSSTRequest::mut_info_for_reflect,
+                    UploadRequest::get_info_for_reflect,
+                    UploadRequest::mut_info_for_reflect,
                 ));
                 fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeBytes>(
                     "data",
-                    UploadSSTRequest::get_data_for_reflect,
-                    UploadSSTRequest::mut_data_for_reflect,
+                    UploadRequest::get_data_for_reflect,
+                    UploadRequest::mut_data_for_reflect,
                 ));
-                ::protobuf::reflect::MessageDescriptor::new::<UploadSSTRequest>(
-                    "UploadSSTRequest",
+                ::protobuf::reflect::MessageDescriptor::new::<UploadRequest>(
+                    "UploadRequest",
                     fields,
                     file_descriptor_proto()
                 )
@@ -2117,7 +2117,7 @@ impl ::protobuf::MessageStatic for UploadSSTRequest {
     }
 }
 
-impl ::protobuf::Clear for UploadSSTRequest {
+impl ::protobuf::Clear for UploadRequest {
     fn clear(&mut self) {
         self.clear_info();
         self.clear_data();
@@ -2125,45 +2125,45 @@ impl ::protobuf::Clear for UploadSSTRequest {
     }
 }
 
-impl ::std::fmt::Debug for UploadSSTRequest {
+impl ::std::fmt::Debug for UploadRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         ::protobuf::text_format::fmt(self, f)
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for UploadSSTRequest {
+impl ::protobuf::reflect::ProtobufValue for UploadRequest {
     fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
         ::protobuf::reflect::ProtobufValueRef::Message(self)
     }
 }
 
 #[derive(PartialEq,Clone,Default)]
-pub struct UploadSSTResponse {
+pub struct UploadResponse {
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
 }
 
 // see codegen.rs for the explanation why impl Sync explicitly
-unsafe impl ::std::marker::Sync for UploadSSTResponse {}
+unsafe impl ::std::marker::Sync for UploadResponse {}
 
-impl UploadSSTResponse {
-    pub fn new() -> UploadSSTResponse {
+impl UploadResponse {
+    pub fn new() -> UploadResponse {
         ::std::default::Default::default()
     }
 
-    pub fn default_instance() -> &'static UploadSSTResponse {
-        static mut instance: ::protobuf::lazy::Lazy<UploadSSTResponse> = ::protobuf::lazy::Lazy {
+    pub fn default_instance() -> &'static UploadResponse {
+        static mut instance: ::protobuf::lazy::Lazy<UploadResponse> = ::protobuf::lazy::Lazy {
             lock: ::protobuf::lazy::ONCE_INIT,
-            ptr: 0 as *const UploadSSTResponse,
+            ptr: 0 as *const UploadResponse,
         };
         unsafe {
-            instance.get(UploadSSTResponse::new)
+            instance.get(UploadResponse::new)
         }
     }
 }
 
-impl ::protobuf::Message for UploadSSTResponse {
+impl ::protobuf::Message for UploadResponse {
     fn is_initialized(&self) -> bool {
         true
     }
@@ -2221,12 +2221,12 @@ impl ::protobuf::Message for UploadSSTResponse {
     }
 }
 
-impl ::protobuf::MessageStatic for UploadSSTResponse {
-    fn new() -> UploadSSTResponse {
-        UploadSSTResponse::new()
+impl ::protobuf::MessageStatic for UploadResponse {
+    fn new() -> UploadResponse {
+        UploadResponse::new()
     }
 
-    fn descriptor_static(_: ::std::option::Option<UploadSSTResponse>) -> &'static ::protobuf::reflect::MessageDescriptor {
+    fn descriptor_static(_: ::std::option::Option<UploadResponse>) -> &'static ::protobuf::reflect::MessageDescriptor {
         static mut descriptor: ::protobuf::lazy::Lazy<::protobuf::reflect::MessageDescriptor> = ::protobuf::lazy::Lazy {
             lock: ::protobuf::lazy::ONCE_INIT,
             ptr: 0 as *const ::protobuf::reflect::MessageDescriptor,
@@ -2234,8 +2234,8 @@ impl ::protobuf::MessageStatic for UploadSSTResponse {
         unsafe {
             descriptor.get(|| {
                 let fields = ::std::vec::Vec::new();
-                ::protobuf::reflect::MessageDescriptor::new::<UploadSSTResponse>(
-                    "UploadSSTResponse",
+                ::protobuf::reflect::MessageDescriptor::new::<UploadResponse>(
+                    "UploadResponse",
                     fields,
                     file_descriptor_proto()
                 )
@@ -2244,49 +2244,49 @@ impl ::protobuf::MessageStatic for UploadSSTResponse {
     }
 }
 
-impl ::protobuf::Clear for UploadSSTResponse {
+impl ::protobuf::Clear for UploadResponse {
     fn clear(&mut self) {
         self.unknown_fields.clear();
     }
 }
 
-impl ::std::fmt::Debug for UploadSSTResponse {
+impl ::std::fmt::Debug for UploadResponse {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         ::protobuf::text_format::fmt(self, f)
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for UploadSSTResponse {
+impl ::protobuf::reflect::ProtobufValue for UploadResponse {
     fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
         ::protobuf::reflect::ProtobufValueRef::Message(self)
     }
 }
 
 #[derive(PartialEq,Clone,Default)]
-pub struct IngestSSTRequest {
+pub struct IngestRequest {
     // message fields
     pub context: ::protobuf::SingularPtrField<super::kvrpcpb::Context>,
-    pub info: ::protobuf::SingularPtrField<SSTFileInfo>,
+    pub info: ::protobuf::SingularPtrField<SSTInfo>,
     // special fields
     unknown_fields: ::protobuf::UnknownFields,
     cached_size: ::protobuf::CachedSize,
 }
 
 // see codegen.rs for the explanation why impl Sync explicitly
-unsafe impl ::std::marker::Sync for IngestSSTRequest {}
+unsafe impl ::std::marker::Sync for IngestRequest {}
 
-impl IngestSSTRequest {
-    pub fn new() -> IngestSSTRequest {
+impl IngestRequest {
+    pub fn new() -> IngestRequest {
         ::std::default::Default::default()
     }
 
-    pub fn default_instance() -> &'static IngestSSTRequest {
-        static mut instance: ::protobuf::lazy::Lazy<IngestSSTRequest> = ::protobuf::lazy::Lazy {
+    pub fn default_instance() -> &'static IngestRequest {
+        static mut instance: ::protobuf::lazy::Lazy<IngestRequest> = ::protobuf::lazy::Lazy {
             lock: ::protobuf::lazy::ONCE_INIT,
-            ptr: 0 as *const IngestSSTRequest,
+            ptr: 0 as *const IngestRequest,
         };
         unsafe {
-            instance.get(IngestSSTRequest::new)
+            instance.get(IngestRequest::new)
         }
     }
 
@@ -2331,7 +2331,7 @@ impl IngestSSTRequest {
         &mut self.context
     }
 
-    // .importpb.SSTFileInfo info = 2;
+    // .importpb.SSTInfo info = 2;
 
     pub fn clear_info(&mut self) {
         self.info.clear();
@@ -2342,13 +2342,13 @@ impl IngestSSTRequest {
     }
 
     // Param is passed by value, moved
-    pub fn set_info(&mut self, v: SSTFileInfo) {
+    pub fn set_info(&mut self, v: SSTInfo) {
         self.info = ::protobuf::SingularPtrField::some(v);
     }
 
     // Mutable pointer to the field.
     // If field is not initialized, it is initialized with default value first.
-    pub fn mut_info(&mut self) -> &mut SSTFileInfo {
+    pub fn mut_info(&mut self) -> &mut SSTInfo {
         if self.info.is_none() {
             self.info.set_default();
         }
@@ -2356,24 +2356,24 @@ impl IngestSSTRequest {
     }
 
     // Take field
-    pub fn take_info(&mut self) -> SSTFileInfo {
-        self.info.take().unwrap_or_else(|| SSTFileInfo::new())
+    pub fn take_info(&mut self) -> SSTInfo {
+        self.info.take().unwrap_or_else(|| SSTInfo::new())
     }
 
-    pub fn get_info(&self) -> &SSTFileInfo {
-        self.info.as_ref().unwrap_or_else(|| SSTFileInfo::default_instance())
+    pub fn get_info(&self) -> &SSTInfo {
+        self.info.as_ref().unwrap_or_else(|| SSTInfo::default_instance())
     }
 
-    fn get_info_for_reflect(&self) -> &::protobuf::SingularPtrField<SSTFileInfo> {
+    fn get_info_for_reflect(&self) -> &::protobuf::SingularPtrField<SSTInfo> {
         &self.info
     }
 
-    fn mut_info_for_reflect(&mut self) -> &mut ::protobuf::SingularPtrField<SSTFileInfo> {
+    fn mut_info_for_reflect(&mut self) -> &mut ::protobuf::SingularPtrField<SSTInfo> {
         &mut self.info
     }
 }
 
-impl ::protobuf::Message for IngestSSTRequest {
+impl ::protobuf::Message for IngestRequest {
     fn is_initialized(&self) -> bool {
         for v in &self.context {
             if !v.is_initialized() {
@@ -2465,12 +2465,12 @@ impl ::protobuf::Message for IngestSSTRequest {
     }
 }
 
-impl ::protobuf::MessageStatic for IngestSSTRequest {
-    fn new() -> IngestSSTRequest {
-        IngestSSTRequest::new()
+impl ::protobuf::MessageStatic for IngestRequest {
+    fn new() -> IngestRequest {
+        IngestRequest::new()
     }
 
-    fn descriptor_static(_: ::std::option::Option<IngestSSTRequest>) -> &'static ::protobuf::reflect::MessageDescriptor {
+    fn descriptor_static(_: ::std::option::Option<IngestRequest>) -> &'static ::protobuf::reflect::MessageDescriptor {
         static mut descriptor: ::protobuf::lazy::Lazy<::protobuf::reflect::MessageDescriptor> = ::protobuf::lazy::Lazy {
             lock: ::protobuf::lazy::ONCE_INIT,
             ptr: 0 as *const ::protobuf::reflect::MessageDescriptor,
@@ -2480,16 +2480,16 @@ impl ::protobuf::MessageStatic for IngestSSTRequest {
                 let mut fields = ::std::vec::Vec::new();
                 fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<super::kvrpcpb::Context>>(
                     "context",
-                    IngestSSTRequest::get_context_for_reflect,
-                    IngestSSTRequest::mut_context_for_reflect,
+                    IngestRequest::get_context_for_reflect,
+                    IngestRequest::mut_context_for_reflect,
                 ));
-                fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<SSTFileInfo>>(
+                fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<SSTInfo>>(
                     "info",
-                    IngestSSTRequest::get_info_for_reflect,
-                    IngestSSTRequest::mut_info_for_reflect,
+                    IngestRequest::get_info_for_reflect,
+                    IngestRequest::mut_info_for_reflect,
                 ));
-                ::protobuf::reflect::MessageDescriptor::new::<IngestSSTRequest>(
-                    "IngestSSTRequest",
+                ::protobuf::reflect::MessageDescriptor::new::<IngestRequest>(
+                    "IngestRequest",
                     fields,
                     file_descriptor_proto()
                 )
@@ -2498,7 +2498,7 @@ impl ::protobuf::MessageStatic for IngestSSTRequest {
     }
 }
 
-impl ::protobuf::Clear for IngestSSTRequest {
+impl ::protobuf::Clear for IngestRequest {
     fn clear(&mut self) {
         self.clear_context();
         self.clear_info();
@@ -2506,20 +2506,20 @@ impl ::protobuf::Clear for IngestSSTRequest {
     }
 }
 
-impl ::std::fmt::Debug for IngestSSTRequest {
+impl ::std::fmt::Debug for IngestRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         ::protobuf::text_format::fmt(self, f)
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for IngestSSTRequest {
+impl ::protobuf::reflect::ProtobufValue for IngestRequest {
     fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
         ::protobuf::reflect::ProtobufValueRef::Message(self)
     }
 }
 
 #[derive(PartialEq,Clone,Default)]
-pub struct IngestSSTResponse {
+pub struct IngestResponse {
     // message fields
     pub error: ::protobuf::SingularPtrField<super::errorpb::Error>,
     // special fields
@@ -2528,20 +2528,20 @@ pub struct IngestSSTResponse {
 }
 
 // see codegen.rs for the explanation why impl Sync explicitly
-unsafe impl ::std::marker::Sync for IngestSSTResponse {}
+unsafe impl ::std::marker::Sync for IngestResponse {}
 
-impl IngestSSTResponse {
-    pub fn new() -> IngestSSTResponse {
+impl IngestResponse {
+    pub fn new() -> IngestResponse {
         ::std::default::Default::default()
     }
 
-    pub fn default_instance() -> &'static IngestSSTResponse {
-        static mut instance: ::protobuf::lazy::Lazy<IngestSSTResponse> = ::protobuf::lazy::Lazy {
+    pub fn default_instance() -> &'static IngestResponse {
+        static mut instance: ::protobuf::lazy::Lazy<IngestResponse> = ::protobuf::lazy::Lazy {
             lock: ::protobuf::lazy::ONCE_INIT,
-            ptr: 0 as *const IngestSSTResponse,
+            ptr: 0 as *const IngestResponse,
         };
         unsafe {
-            instance.get(IngestSSTResponse::new)
+            instance.get(IngestResponse::new)
         }
     }
 
@@ -2587,7 +2587,7 @@ impl IngestSSTResponse {
     }
 }
 
-impl ::protobuf::Message for IngestSSTResponse {
+impl ::protobuf::Message for IngestResponse {
     fn is_initialized(&self) -> bool {
         for v in &self.error {
             if !v.is_initialized() {
@@ -2662,12 +2662,12 @@ impl ::protobuf::Message for IngestSSTResponse {
     }
 }
 
-impl ::protobuf::MessageStatic for IngestSSTResponse {
-    fn new() -> IngestSSTResponse {
-        IngestSSTResponse::new()
+impl ::protobuf::MessageStatic for IngestResponse {
+    fn new() -> IngestResponse {
+        IngestResponse::new()
     }
 
-    fn descriptor_static(_: ::std::option::Option<IngestSSTResponse>) -> &'static ::protobuf::reflect::MessageDescriptor {
+    fn descriptor_static(_: ::std::option::Option<IngestResponse>) -> &'static ::protobuf::reflect::MessageDescriptor {
         static mut descriptor: ::protobuf::lazy::Lazy<::protobuf::reflect::MessageDescriptor> = ::protobuf::lazy::Lazy {
             lock: ::protobuf::lazy::ONCE_INIT,
             ptr: 0 as *const ::protobuf::reflect::MessageDescriptor,
@@ -2677,11 +2677,11 @@ impl ::protobuf::MessageStatic for IngestSSTResponse {
                 let mut fields = ::std::vec::Vec::new();
                 fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<super::errorpb::Error>>(
                     "error",
-                    IngestSSTResponse::get_error_for_reflect,
-                    IngestSSTResponse::mut_error_for_reflect,
+                    IngestResponse::get_error_for_reflect,
+                    IngestResponse::mut_error_for_reflect,
                 ));
-                ::protobuf::reflect::MessageDescriptor::new::<IngestSSTResponse>(
-                    "IngestSSTResponse",
+                ::protobuf::reflect::MessageDescriptor::new::<IngestResponse>(
+                    "IngestResponse",
                     fields,
                     file_descriptor_proto()
                 )
@@ -2690,20 +2690,20 @@ impl ::protobuf::MessageStatic for IngestSSTResponse {
     }
 }
 
-impl ::protobuf::Clear for IngestSSTResponse {
+impl ::protobuf::Clear for IngestResponse {
     fn clear(&mut self) {
         self.clear_error();
         self.unknown_fields.clear();
     }
 }
 
-impl ::std::fmt::Debug for IngestSSTResponse {
+impl ::std::fmt::Debug for IngestResponse {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         ::protobuf::text_format::fmt(self, f)
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for IngestSSTResponse {
+impl ::protobuf::reflect::ProtobufValue for IngestResponse {
     fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
         ::protobuf::reflect::ProtobufValueRef::Message(self)
     }
@@ -2722,142 +2722,143 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     teBatchR\x05batch\x1a\x1a\n\x04Head\x12\x12\n\x04uuid\x18\x01\x20\x01(\
     \x0cR\x04uuid\"\x0f\n\rWriteResponse\"<\n\x0cFlushRequest\x12\x12\n\x04u\
     uid\x18\x01\x20\x01(\x0cR\x04uuid\x12\x18\n\x07address\x18\x02\x20\x01(\
-    \tR\x07address\"\x0f\n\rFlushResponse\"\xbd\x01\n\x0bSSTFileInfo\x12\x12\
-    \n\x04uuid\x18\x01\x20\x01(\x0cR\x04uuid\x12\x14\n\x05crc32\x18\x02\x20\
+    \tR\x07address\"\x0f\n\rFlushResponse\"\xb9\x01\n\x07SSTInfo\x12\x12\n\
+    \x04uuid\x18\x01\x20\x01(\x0cR\x04uuid\x12\x14\n\x05crc32\x18\x02\x20\
     \x01(\rR\x05crc32\x12\x16\n\x06length\x18\x03\x20\x01(\x04R\x06length\
     \x12\x17\n\x07cf_name\x18\x04\x20\x01(\tR\x06cfName\x12\x1b\n\tregion_id\
     \x18\x05\x20\x01(\x04R\x08regionId\x126\n\x0cregion_epoch\x18\x06\x20\
-    \x01(\x0b2\x13.metapb.RegionEpochR\x0bregionEpoch\"Q\n\x10UploadSSTReque\
-    st\x12)\n\x04info\x18\x01\x20\x01(\x0b2\x15.importpb.SSTFileInfoR\x04inf\
-    o\x12\x12\n\x04data\x18\x02\x20\x01(\x0cR\x04data\"\x13\n\x11UploadSSTRe\
-    sponse\"i\n\x10IngestSSTRequest\x12*\n\x07context\x18\x01\x20\x01(\x0b2\
-    \x10.kvrpcpb.ContextR\x07context\x12)\n\x04info\x18\x02\x20\x01(\x0b2\
-    \x15.importpb.SSTFileInfoR\x04info\"9\n\x11IngestSSTResponse\x12$\n\x05e\
-    rror\x18\x01\x20\x01(\x0b2\x0e.errorpb.ErrorR\x05error2\x94\x02\n\x06Imp\
-    ort\x12<\n\x05Write\x12\x16.importpb.WriteRequest\x1a\x17.importpb.Write\
-    Response\"\0(\x01\x12:\n\x05Flush\x12\x16.importpb.FlushRequest\x1a\x17.\
-    importpb.FlushResponse\"\0\x12H\n\tUploadSST\x12\x1a.importpb.UploadSSTR\
-    equest\x1a\x1b.importpb.UploadSSTResponse\"\0(\x01\x12F\n\tIngestSST\x12\
-    \x1a.importpb.IngestSSTRequest\x1a\x1b.importpb.IngestSSTResponse\"\0B&\
-    \n\x18com.pingcap.tikv.kvproto\xc8\xe2\x1e\x01\xe0\xe2\x1e\x01\xd0\xe2\
-    \x1e\x01J\xd6\x13\n\x06\x12\x04\0\0P\x01\n\x08\n\x01\x0c\x12\x03\0\0\x12\
-    \n\x08\n\x01\x02\x12\x03\x02\x08\x10\n\t\n\x02\x03\0\x12\x03\x04\x07\x15\
-    \n\t\n\x02\x03\x01\x12\x03\x05\x07\x16\n\t\n\x02\x03\x02\x12\x03\x06\x07\
-    \x16\n\t\n\x02\x03\x03\x12\x03\x07\x07\x1d\n\x08\n\x01\x08\x12\x03\t\0$\
-    \n\x0b\n\x04\x08\xe7\x07\0\x12\x03\t\0$\n\x0c\n\x05\x08\xe7\x07\0\x02\
-    \x12\x03\t\x07\x1c\n\r\n\x06\x08\xe7\x07\0\x02\0\x12\x03\t\x07\x1c\n\x0e\
-    \n\x07\x08\xe7\x07\0\x02\0\x01\x12\x03\t\x08\x1b\n\x0c\n\x05\x08\xe7\x07\
-    \0\x03\x12\x03\t\x1f#\n\x08\n\x01\x08\x12\x03\n\0(\n\x0b\n\x04\x08\xe7\
-    \x07\x01\x12\x03\n\0(\n\x0c\n\x05\x08\xe7\x07\x01\x02\x12\x03\n\x07\x20\
-    \n\r\n\x06\x08\xe7\x07\x01\x02\0\x12\x03\n\x07\x20\n\x0e\n\x07\x08\xe7\
-    \x07\x01\x02\0\x01\x12\x03\n\x08\x1f\n\x0c\n\x05\x08\xe7\x07\x01\x03\x12\
-    \x03\n#'\n\x08\n\x01\x08\x12\x03\x0b\0*\n\x0b\n\x04\x08\xe7\x07\x02\x12\
-    \x03\x0b\0*\n\x0c\n\x05\x08\xe7\x07\x02\x02\x12\x03\x0b\x07\"\n\r\n\x06\
-    \x08\xe7\x07\x02\x02\0\x12\x03\x0b\x07\"\n\x0e\n\x07\x08\xe7\x07\x02\x02\
-    \0\x01\x12\x03\x0b\x08!\n\x0c\n\x05\x08\xe7\x07\x02\x03\x12\x03\x0b%)\n\
-    \x08\n\x01\x08\x12\x03\r\01\n\x0b\n\x04\x08\xe7\x07\x03\x12\x03\r\01\n\
-    \x0c\n\x05\x08\xe7\x07\x03\x02\x12\x03\r\x07\x13\n\r\n\x06\x08\xe7\x07\
-    \x03\x02\0\x12\x03\r\x07\x13\n\x0e\n\x07\x08\xe7\x07\x03\x02\0\x01\x12\
-    \x03\r\x07\x13\n\x0c\n\x05\x08\xe7\x07\x03\x07\x12\x03\r\x160\n\n\n\x02\
-    \x06\0\x12\x04\x0f\0\x15\x01\n\n\n\x03\x06\0\x01\x12\x03\x0f\x08\x0e\n\
-    \x0b\n\x04\x06\0\x02\0\x12\x03\x10\x04=\n\x0c\n\x05\x06\0\x02\0\x01\x12\
-    \x03\x10\x08\r\n\x0c\n\x05\x06\0\x02\0\x05\x12\x03\x10\x0e\x14\n\x0c\n\
-    \x05\x06\0\x02\0\x02\x12\x03\x10\x15!\n\x0c\n\x05\x06\0\x02\0\x03\x12\
-    \x03\x10,9\n\x0b\n\x04\x06\0\x02\x01\x12\x03\x11\x046\n\x0c\n\x05\x06\0\
-    \x02\x01\x01\x12\x03\x11\x08\r\n\x0c\n\x05\x06\0\x02\x01\x02\x12\x03\x11\
-    \x0e\x1a\n\x0c\n\x05\x06\0\x02\x01\x03\x12\x03\x11%2\n\x0b\n\x04\x06\0\
-    \x02\x02\x12\x03\x13\x04I\n\x0c\n\x05\x06\0\x02\x02\x01\x12\x03\x13\x08\
-    \x11\n\x0c\n\x05\x06\0\x02\x02\x05\x12\x03\x13\x12\x18\n\x0c\n\x05\x06\0\
-    \x02\x02\x02\x12\x03\x13\x19)\n\x0c\n\x05\x06\0\x02\x02\x03\x12\x03\x134\
-    E\n\x0b\n\x04\x06\0\x02\x03\x12\x03\x14\x04B\n\x0c\n\x05\x06\0\x02\x03\
-    \x01\x12\x03\x14\x08\x11\n\x0c\n\x05\x06\0\x02\x03\x02\x12\x03\x14\x12\"\
-    \n\x0c\n\x05\x06\0\x02\x03\x03\x12\x03\x14->\n\n\n\x02\x04\0\x12\x04\x17\
-    \0\x1e\x01\n\n\n\x03\x04\0\x01\x12\x03\x17\x08\x10\n\x0c\n\x04\x04\0\x04\
-    \0\x12\x04\x18\x04\x1a\x05\n\x0c\n\x05\x04\0\x04\0\x01\x12\x03\x18\t\x0b\
-    \n\r\n\x06\x04\0\x04\0\x02\0\x12\x03\x19\x08\x10\n\x0e\n\x07\x04\0\x04\0\
-    \x02\0\x01\x12\x03\x19\x08\x0b\n\x0e\n\x07\x04\0\x04\0\x02\0\x02\x12\x03\
-    \x19\x0e\x0f\n\x0b\n\x04\x04\0\x02\0\x12\x03\x1b\x04\x0e\n\r\n\x05\x04\0\
-    \x02\0\x04\x12\x04\x1b\x04\x1a\x05\n\x0c\n\x05\x04\0\x02\0\x06\x12\x03\
-    \x1b\x04\x06\n\x0c\n\x05\x04\0\x02\0\x01\x12\x03\x1b\x07\t\n\x0c\n\x05\
-    \x04\0\x02\0\x03\x12\x03\x1b\x0c\r\n\x0b\n\x04\x04\0\x02\x01\x12\x03\x1c\
-    \x04\x12\n\r\n\x05\x04\0\x02\x01\x04\x12\x04\x1c\x04\x1b\x0e\n\x0c\n\x05\
-    \x04\0\x02\x01\x05\x12\x03\x1c\x04\t\n\x0c\n\x05\x04\0\x02\x01\x01\x12\
-    \x03\x1c\n\r\n\x0c\n\x05\x04\0\x02\x01\x03\x12\x03\x1c\x10\x11\n\x0b\n\
-    \x04\x04\0\x02\x02\x12\x03\x1d\x04\x14\n\r\n\x05\x04\0\x02\x02\x04\x12\
-    \x04\x1d\x04\x1c\x12\n\x0c\n\x05\x04\0\x02\x02\x05\x12\x03\x1d\x04\t\n\
-    \x0c\n\x05\x04\0\x02\x02\x01\x12\x03\x1d\n\x0f\n\x0c\n\x05\x04\0\x02\x02\
-    \x03\x12\x03\x1d\x12\x13\n\n\n\x02\x04\x01\x12\x04\x20\0#\x01\n\n\n\x03\
-    \x04\x01\x01\x12\x03\x20\x08\x12\n\x0b\n\x04\x04\x01\x02\0\x12\x03!\x04\
-    \x19\n\r\n\x05\x04\x01\x02\0\x04\x12\x04!\x04\x20\x14\n\x0c\n\x05\x04\
-    \x01\x02\0\x05\x12\x03!\x04\n\n\x0c\n\x05\x04\x01\x02\0\x01\x12\x03!\x0b\
-    \x14\n\x0c\n\x05\x04\x01\x02\0\x03\x12\x03!\x17\x18\n\x0b\n\x04\x04\x01\
-    \x02\x01\x12\x03\"\x04$\n\x0c\n\x05\x04\x01\x02\x01\x04\x12\x03\"\x04\
-    \x0c\n\x0c\n\x05\x04\x01\x02\x01\x06\x12\x03\"\r\x15\n\x0c\n\x05\x04\x01\
-    \x02\x01\x01\x12\x03\"\x16\x1f\n\x0c\n\x05\x04\x01\x02\x01\x03\x12\x03\"\
-    \"#\n\n\n\x02\x04\x02\x12\x04%\0+\x01\n\n\n\x03\x04\x02\x01\x12\x03%\x08\
-    \x14\n\x0c\n\x04\x04\x02\x03\0\x12\x04&\x04(\x05\n\x0c\n\x05\x04\x02\x03\
-    \0\x01\x12\x03&\x0c\x10\n\r\n\x06\x04\x02\x03\0\x02\0\x12\x03'\x08\x17\n\
-    \x0f\n\x07\x04\x02\x03\0\x02\0\x04\x12\x04'\x08&\x12\n\x0e\n\x07\x04\x02\
-    \x03\0\x02\0\x05\x12\x03'\x08\r\n\x0e\n\x07\x04\x02\x03\0\x02\0\x01\x12\
-    \x03'\x0e\x12\n\x0e\n\x07\x04\x02\x03\0\x02\0\x03\x12\x03'\x15\x16\n\x0b\
-    \n\x04\x04\x02\x02\0\x12\x03)\x04\x12\n\r\n\x05\x04\x02\x02\0\x04\x12\
-    \x04)\x04(\x05\n\x0c\n\x05\x04\x02\x02\0\x06\x12\x03)\x04\x08\n\x0c\n\
-    \x05\x04\x02\x02\0\x01\x12\x03)\t\r\n\x0c\n\x05\x04\x02\x02\0\x03\x12\
-    \x03)\x10\x11\n\x0b\n\x04\x04\x02\x02\x01\x12\x03*\x04\x19\n\r\n\x05\x04\
-    \x02\x02\x01\x04\x12\x04*\x04)\x12\n\x0c\n\x05\x04\x02\x02\x01\x06\x12\
-    \x03*\x04\x0e\n\x0c\n\x05\x04\x02\x02\x01\x01\x12\x03*\x0f\x14\n\x0c\n\
-    \x05\x04\x02\x02\x01\x03\x12\x03*\x17\x18\n\n\n\x02\x04\x03\x12\x04-\0.\
-    \x01\n\n\n\x03\x04\x03\x01\x12\x03-\x08\x15\n\n\n\x02\x04\x04\x12\x040\0\
-    3\x01\n\n\n\x03\x04\x04\x01\x12\x030\x08\x14\n\x0b\n\x04\x04\x04\x02\0\
-    \x12\x031\x04\x13\n\r\n\x05\x04\x04\x02\0\x04\x12\x041\x040\x16\n\x0c\n\
-    \x05\x04\x04\x02\0\x05\x12\x031\x04\t\n\x0c\n\x05\x04\x04\x02\0\x01\x12\
-    \x031\n\x0e\n\x0c\n\x05\x04\x04\x02\0\x03\x12\x031\x11\x12\n\x0b\n\x04\
-    \x04\x04\x02\x01\x12\x032\x04\x17\n\r\n\x05\x04\x04\x02\x01\x04\x12\x042\
-    \x041\x13\n\x0c\n\x05\x04\x04\x02\x01\x05\x12\x032\x04\n\n\x0c\n\x05\x04\
-    \x04\x02\x01\x01\x12\x032\x0b\x12\n\x0c\n\x05\x04\x04\x02\x01\x03\x12\
-    \x032\x15\x16\n\n\n\x02\x04\x05\x12\x045\06\x01\n\n\n\x03\x04\x05\x01\
-    \x12\x035\x08\x15\n\n\n\x02\x04\x06\x12\x048\0?\x01\n\n\n\x03\x04\x06\
-    \x01\x12\x038\x08\x13\n\x0b\n\x04\x04\x06\x02\0\x12\x039\x04\x13\n\r\n\
-    \x05\x04\x06\x02\0\x04\x12\x049\x048\x15\n\x0c\n\x05\x04\x06\x02\0\x05\
-    \x12\x039\x04\t\n\x0c\n\x05\x04\x06\x02\0\x01\x12\x039\n\x0e\n\x0c\n\x05\
-    \x04\x06\x02\0\x03\x12\x039\x11\x12\n\x0b\n\x04\x04\x06\x02\x01\x12\x03:\
-    \x04\x15\n\r\n\x05\x04\x06\x02\x01\x04\x12\x04:\x049\x13\n\x0c\n\x05\x04\
-    \x06\x02\x01\x05\x12\x03:\x04\n\n\x0c\n\x05\x04\x06\x02\x01\x01\x12\x03:\
-    \x0b\x10\n\x0c\n\x05\x04\x06\x02\x01\x03\x12\x03:\x13\x14\n\x0b\n\x04\
-    \x04\x06\x02\x02\x12\x03;\x04\x16\n\r\n\x05\x04\x06\x02\x02\x04\x12\x04;\
-    \x04:\x15\n\x0c\n\x05\x04\x06\x02\x02\x05\x12\x03;\x04\n\n\x0c\n\x05\x04\
-    \x06\x02\x02\x01\x12\x03;\x0b\x11\n\x0c\n\x05\x04\x06\x02\x02\x03\x12\
-    \x03;\x14\x15\n\x0b\n\x04\x04\x06\x02\x03\x12\x03<\x04\x17\n\r\n\x05\x04\
-    \x06\x02\x03\x04\x12\x04<\x04;\x16\n\x0c\n\x05\x04\x06\x02\x03\x05\x12\
-    \x03<\x04\n\n\x0c\n\x05\x04\x06\x02\x03\x01\x12\x03<\x0b\x12\n\x0c\n\x05\
-    \x04\x06\x02\x03\x03\x12\x03<\x15\x16\n\x0b\n\x04\x04\x06\x02\x04\x12\
-    \x03=\x04\x19\n\r\n\x05\x04\x06\x02\x04\x04\x12\x04=\x04<\x17\n\x0c\n\
-    \x05\x04\x06\x02\x04\x05\x12\x03=\x04\n\n\x0c\n\x05\x04\x06\x02\x04\x01\
-    \x12\x03=\x0b\x14\n\x0c\n\x05\x04\x06\x02\x04\x03\x12\x03=\x17\x18\n\x0b\
-    \n\x04\x04\x06\x02\x05\x12\x03>\x04(\n\r\n\x05\x04\x06\x02\x05\x04\x12\
-    \x04>\x04=\x19\n\x0c\n\x05\x04\x06\x02\x05\x06\x12\x03>\x04\x16\n\x0c\n\
-    \x05\x04\x06\x02\x05\x01\x12\x03>\x17#\n\x0c\n\x05\x04\x06\x02\x05\x03\
-    \x12\x03>&'\n\n\n\x02\x04\x07\x12\x04A\0D\x01\n\n\n\x03\x04\x07\x01\x12\
-    \x03A\x08\x18\n\x0b\n\x04\x04\x07\x02\0\x12\x03B\x04\x19\n\r\n\x05\x04\
-    \x07\x02\0\x04\x12\x04B\x04A\x1a\n\x0c\n\x05\x04\x07\x02\0\x06\x12\x03B\
-    \x04\x0f\n\x0c\n\x05\x04\x07\x02\0\x01\x12\x03B\x10\x14\n\x0c\n\x05\x04\
-    \x07\x02\0\x03\x12\x03B\x17\x18\n\x0b\n\x04\x04\x07\x02\x01\x12\x03C\x04\
-    \x13\n\r\n\x05\x04\x07\x02\x01\x04\x12\x04C\x04B\x19\n\x0c\n\x05\x04\x07\
-    \x02\x01\x05\x12\x03C\x04\t\n\x0c\n\x05\x04\x07\x02\x01\x01\x12\x03C\n\
-    \x0e\n\x0c\n\x05\x04\x07\x02\x01\x03\x12\x03C\x11\x12\n\n\n\x02\x04\x08\
-    \x12\x04F\0G\x01\n\n\n\x03\x04\x08\x01\x12\x03F\x08\x19\n\n\n\x02\x04\t\
-    \x12\x04I\0L\x01\n\n\n\x03\x04\t\x01\x12\x03I\x08\x18\n\x0b\n\x04\x04\t\
-    \x02\0\x12\x03J\x04\x20\n\r\n\x05\x04\t\x02\0\x04\x12\x04J\x04I\x1a\n\
-    \x0c\n\x05\x04\t\x02\0\x06\x12\x03J\x04\x13\n\x0c\n\x05\x04\t\x02\0\x01\
-    \x12\x03J\x14\x1b\n\x0c\n\x05\x04\t\x02\0\x03\x12\x03J\x1e\x1f\n\x0b\n\
-    \x04\x04\t\x02\x01\x12\x03K\x04\x19\n\r\n\x05\x04\t\x02\x01\x04\x12\x04K\
-    \x04J\x20\n\x0c\n\x05\x04\t\x02\x01\x06\x12\x03K\x04\x0f\n\x0c\n\x05\x04\
-    \t\x02\x01\x01\x12\x03K\x10\x14\n\x0c\n\x05\x04\t\x02\x01\x03\x12\x03K\
-    \x17\x18\n\n\n\x02\x04\n\x12\x04N\0P\x01\n\n\n\x03\x04\n\x01\x12\x03N\
-    \x08\x19\n\x0b\n\x04\x04\n\x02\0\x12\x03O\x04\x1c\n\r\n\x05\x04\n\x02\0\
-    \x04\x12\x04O\x04N\x1b\n\x0c\n\x05\x04\n\x02\0\x06\x12\x03O\x04\x11\n\
-    \x0c\n\x05\x04\n\x02\0\x01\x12\x03O\x12\x17\n\x0c\n\x05\x04\n\x02\0\x03\
-    \x12\x03O\x1a\x1bb\x06proto3\
+    \x01(\x0b2\x13.metapb.RegionEpochR\x0bregionEpoch\"J\n\rUploadRequest\
+    \x12%\n\x04info\x18\x01\x20\x01(\x0b2\x11.importpb.SSTInfoR\x04info\x12\
+    \x12\n\x04data\x18\x02\x20\x01(\x0cR\x04data\"\x10\n\x0eUploadResponse\"\
+    b\n\rIngestRequest\x12*\n\x07context\x18\x01\x20\x01(\x0b2\x10.kvrpcpb.C\
+    ontextR\x07context\x12%\n\x04info\x18\x02\x20\x01(\x0b2\x11.importpb.SST\
+    InfoR\x04info\"6\n\x0eIngestResponse\x12$\n\x05error\x18\x01\x20\x01(\
+    \x0b2\x0e.errorpb.ErrorR\x05error2\x83\x01\n\x07DumpSST\x12<\n\x05Write\
+    \x12\x16.importpb.WriteRequest\x1a\x17.importpb.WriteResponse\"\0(\x01\
+    \x12:\n\x05Flush\x12\x16.importpb.FlushRequest\x1a\x17.importpb.FlushRes\
+    ponse\"\02\x89\x01\n\x07LoadSST\x12?\n\x06Upload\x12\x17.importpb.Upload\
+    Request\x1a\x18.importpb.UploadResponse\"\0(\x01\x12=\n\x06Ingest\x12\
+    \x17.importpb.IngestRequest\x1a\x18.importpb.IngestResponse\"\0B&\n\x18c\
+    om.pingcap.tikv.kvproto\xd0\xe2\x1e\x01\xe0\xe2\x1e\x01\xc8\xe2\x1e\x01J\
+    \xee\x13\n\x06\x12\x04\0\0R\x01\n\x08\n\x01\x0c\x12\x03\0\0\x12\n\x08\n\
+    \x01\x02\x12\x03\x02\x08\x10\n\t\n\x02\x03\0\x12\x03\x04\x07\x15\n\t\n\
+    \x02\x03\x01\x12\x03\x05\x07\x16\n\t\n\x02\x03\x02\x12\x03\x06\x07\x16\n\
+    \t\n\x02\x03\x03\x12\x03\x07\x07\x1d\n\x08\n\x01\x08\x12\x03\t\0$\n\x0b\
+    \n\x04\x08\xe7\x07\0\x12\x03\t\0$\n\x0c\n\x05\x08\xe7\x07\0\x02\x12\x03\
+    \t\x07\x1c\n\r\n\x06\x08\xe7\x07\0\x02\0\x12\x03\t\x07\x1c\n\x0e\n\x07\
+    \x08\xe7\x07\0\x02\0\x01\x12\x03\t\x08\x1b\n\x0c\n\x05\x08\xe7\x07\0\x03\
+    \x12\x03\t\x1f#\n\x08\n\x01\x08\x12\x03\n\0(\n\x0b\n\x04\x08\xe7\x07\x01\
+    \x12\x03\n\0(\n\x0c\n\x05\x08\xe7\x07\x01\x02\x12\x03\n\x07\x20\n\r\n\
+    \x06\x08\xe7\x07\x01\x02\0\x12\x03\n\x07\x20\n\x0e\n\x07\x08\xe7\x07\x01\
+    \x02\0\x01\x12\x03\n\x08\x1f\n\x0c\n\x05\x08\xe7\x07\x01\x03\x12\x03\n#'\
+    \n\x08\n\x01\x08\x12\x03\x0b\0*\n\x0b\n\x04\x08\xe7\x07\x02\x12\x03\x0b\
+    \0*\n\x0c\n\x05\x08\xe7\x07\x02\x02\x12\x03\x0b\x07\"\n\r\n\x06\x08\xe7\
+    \x07\x02\x02\0\x12\x03\x0b\x07\"\n\x0e\n\x07\x08\xe7\x07\x02\x02\0\x01\
+    \x12\x03\x0b\x08!\n\x0c\n\x05\x08\xe7\x07\x02\x03\x12\x03\x0b%)\n\x08\n\
+    \x01\x08\x12\x03\r\01\n\x0b\n\x04\x08\xe7\x07\x03\x12\x03\r\01\n\x0c\n\
+    \x05\x08\xe7\x07\x03\x02\x12\x03\r\x07\x13\n\r\n\x06\x08\xe7\x07\x03\x02\
+    \0\x12\x03\r\x07\x13\n\x0e\n\x07\x08\xe7\x07\x03\x02\0\x01\x12\x03\r\x07\
+    \x13\n\x0c\n\x05\x08\xe7\x07\x03\x07\x12\x03\r\x160\n\n\n\x02\x06\0\x12\
+    \x04\x0f\0\x12\x01\n\n\n\x03\x06\0\x01\x12\x03\x0f\x08\x0f\n\x0b\n\x04\
+    \x06\0\x02\0\x12\x03\x10\x04=\n\x0c\n\x05\x06\0\x02\0\x01\x12\x03\x10\
+    \x08\r\n\x0c\n\x05\x06\0\x02\0\x05\x12\x03\x10\x0e\x14\n\x0c\n\x05\x06\0\
+    \x02\0\x02\x12\x03\x10\x15!\n\x0c\n\x05\x06\0\x02\0\x03\x12\x03\x10,9\n\
+    \x0b\n\x04\x06\0\x02\x01\x12\x03\x11\x046\n\x0c\n\x05\x06\0\x02\x01\x01\
+    \x12\x03\x11\x08\r\n\x0c\n\x05\x06\0\x02\x01\x02\x12\x03\x11\x0e\x1a\n\
+    \x0c\n\x05\x06\0\x02\x01\x03\x12\x03\x11%2\n\n\n\x02\x06\x01\x12\x04\x14\
+    \0\x17\x01\n\n\n\x03\x06\x01\x01\x12\x03\x14\x08\x0f\n\x0b\n\x04\x06\x01\
+    \x02\0\x12\x03\x15\x04@\n\x0c\n\x05\x06\x01\x02\0\x01\x12\x03\x15\x08\
+    \x0e\n\x0c\n\x05\x06\x01\x02\0\x05\x12\x03\x15\x0f\x15\n\x0c\n\x05\x06\
+    \x01\x02\0\x02\x12\x03\x15\x16#\n\x0c\n\x05\x06\x01\x02\0\x03\x12\x03\
+    \x15.<\n\x0b\n\x04\x06\x01\x02\x01\x12\x03\x16\x049\n\x0c\n\x05\x06\x01\
+    \x02\x01\x01\x12\x03\x16\x08\x0e\n\x0c\n\x05\x06\x01\x02\x01\x02\x12\x03\
+    \x16\x0f\x1c\n\x0c\n\x05\x06\x01\x02\x01\x03\x12\x03\x16'5\n\n\n\x02\x04\
+    \0\x12\x04\x19\0\x20\x01\n\n\n\x03\x04\0\x01\x12\x03\x19\x08\x10\n\x0c\n\
+    \x04\x04\0\x04\0\x12\x04\x1a\x04\x1c\x05\n\x0c\n\x05\x04\0\x04\0\x01\x12\
+    \x03\x1a\t\x0b\n\r\n\x06\x04\0\x04\0\x02\0\x12\x03\x1b\x08\x10\n\x0e\n\
+    \x07\x04\0\x04\0\x02\0\x01\x12\x03\x1b\x08\x0b\n\x0e\n\x07\x04\0\x04\0\
+    \x02\0\x02\x12\x03\x1b\x0e\x0f\n\x0b\n\x04\x04\0\x02\0\x12\x03\x1d\x04\
+    \x0e\n\r\n\x05\x04\0\x02\0\x04\x12\x04\x1d\x04\x1c\x05\n\x0c\n\x05\x04\0\
+    \x02\0\x06\x12\x03\x1d\x04\x06\n\x0c\n\x05\x04\0\x02\0\x01\x12\x03\x1d\
+    \x07\t\n\x0c\n\x05\x04\0\x02\0\x03\x12\x03\x1d\x0c\r\n\x0b\n\x04\x04\0\
+    \x02\x01\x12\x03\x1e\x04\x12\n\r\n\x05\x04\0\x02\x01\x04\x12\x04\x1e\x04\
+    \x1d\x0e\n\x0c\n\x05\x04\0\x02\x01\x05\x12\x03\x1e\x04\t\n\x0c\n\x05\x04\
+    \0\x02\x01\x01\x12\x03\x1e\n\r\n\x0c\n\x05\x04\0\x02\x01\x03\x12\x03\x1e\
+    \x10\x11\n\x0b\n\x04\x04\0\x02\x02\x12\x03\x1f\x04\x14\n\r\n\x05\x04\0\
+    \x02\x02\x04\x12\x04\x1f\x04\x1e\x12\n\x0c\n\x05\x04\0\x02\x02\x05\x12\
+    \x03\x1f\x04\t\n\x0c\n\x05\x04\0\x02\x02\x01\x12\x03\x1f\n\x0f\n\x0c\n\
+    \x05\x04\0\x02\x02\x03\x12\x03\x1f\x12\x13\n\n\n\x02\x04\x01\x12\x04\"\0\
+    %\x01\n\n\n\x03\x04\x01\x01\x12\x03\"\x08\x12\n\x0b\n\x04\x04\x01\x02\0\
+    \x12\x03#\x04\x19\n\r\n\x05\x04\x01\x02\0\x04\x12\x04#\x04\"\x14\n\x0c\n\
+    \x05\x04\x01\x02\0\x05\x12\x03#\x04\n\n\x0c\n\x05\x04\x01\x02\0\x01\x12\
+    \x03#\x0b\x14\n\x0c\n\x05\x04\x01\x02\0\x03\x12\x03#\x17\x18\n\x0b\n\x04\
+    \x04\x01\x02\x01\x12\x03$\x04$\n\x0c\n\x05\x04\x01\x02\x01\x04\x12\x03$\
+    \x04\x0c\n\x0c\n\x05\x04\x01\x02\x01\x06\x12\x03$\r\x15\n\x0c\n\x05\x04\
+    \x01\x02\x01\x01\x12\x03$\x16\x1f\n\x0c\n\x05\x04\x01\x02\x01\x03\x12\
+    \x03$\"#\n\n\n\x02\x04\x02\x12\x04'\0-\x01\n\n\n\x03\x04\x02\x01\x12\x03\
+    '\x08\x14\n\x0c\n\x04\x04\x02\x03\0\x12\x04(\x04*\x05\n\x0c\n\x05\x04\
+    \x02\x03\0\x01\x12\x03(\x0c\x10\n\r\n\x06\x04\x02\x03\0\x02\0\x12\x03)\
+    \x08\x17\n\x0f\n\x07\x04\x02\x03\0\x02\0\x04\x12\x04)\x08(\x12\n\x0e\n\
+    \x07\x04\x02\x03\0\x02\0\x05\x12\x03)\x08\r\n\x0e\n\x07\x04\x02\x03\0\
+    \x02\0\x01\x12\x03)\x0e\x12\n\x0e\n\x07\x04\x02\x03\0\x02\0\x03\x12\x03)\
+    \x15\x16\n\x0b\n\x04\x04\x02\x02\0\x12\x03+\x04\x12\n\r\n\x05\x04\x02\
+    \x02\0\x04\x12\x04+\x04*\x05\n\x0c\n\x05\x04\x02\x02\0\x06\x12\x03+\x04\
+    \x08\n\x0c\n\x05\x04\x02\x02\0\x01\x12\x03+\t\r\n\x0c\n\x05\x04\x02\x02\
+    \0\x03\x12\x03+\x10\x11\n\x0b\n\x04\x04\x02\x02\x01\x12\x03,\x04\x19\n\r\
+    \n\x05\x04\x02\x02\x01\x04\x12\x04,\x04+\x12\n\x0c\n\x05\x04\x02\x02\x01\
+    \x06\x12\x03,\x04\x0e\n\x0c\n\x05\x04\x02\x02\x01\x01\x12\x03,\x0f\x14\n\
+    \x0c\n\x05\x04\x02\x02\x01\x03\x12\x03,\x17\x18\n\n\n\x02\x04\x03\x12\
+    \x04/\00\x01\n\n\n\x03\x04\x03\x01\x12\x03/\x08\x15\n\n\n\x02\x04\x04\
+    \x12\x042\05\x01\n\n\n\x03\x04\x04\x01\x12\x032\x08\x14\n\x0b\n\x04\x04\
+    \x04\x02\0\x12\x033\x04\x13\n\r\n\x05\x04\x04\x02\0\x04\x12\x043\x042\
+    \x16\n\x0c\n\x05\x04\x04\x02\0\x05\x12\x033\x04\t\n\x0c\n\x05\x04\x04\
+    \x02\0\x01\x12\x033\n\x0e\n\x0c\n\x05\x04\x04\x02\0\x03\x12\x033\x11\x12\
+    \n\x0b\n\x04\x04\x04\x02\x01\x12\x034\x04\x17\n\r\n\x05\x04\x04\x02\x01\
+    \x04\x12\x044\x043\x13\n\x0c\n\x05\x04\x04\x02\x01\x05\x12\x034\x04\n\n\
+    \x0c\n\x05\x04\x04\x02\x01\x01\x12\x034\x0b\x12\n\x0c\n\x05\x04\x04\x02\
+    \x01\x03\x12\x034\x15\x16\n\n\n\x02\x04\x05\x12\x047\08\x01\n\n\n\x03\
+    \x04\x05\x01\x12\x037\x08\x15\n\n\n\x02\x04\x06\x12\x04:\0A\x01\n\n\n\
+    \x03\x04\x06\x01\x12\x03:\x08\x0f\n\x0b\n\x04\x04\x06\x02\0\x12\x03;\x04\
+    \x13\n\r\n\x05\x04\x06\x02\0\x04\x12\x04;\x04:\x11\n\x0c\n\x05\x04\x06\
+    \x02\0\x05\x12\x03;\x04\t\n\x0c\n\x05\x04\x06\x02\0\x01\x12\x03;\n\x0e\n\
+    \x0c\n\x05\x04\x06\x02\0\x03\x12\x03;\x11\x12\n\x0b\n\x04\x04\x06\x02\
+    \x01\x12\x03<\x04\x15\n\r\n\x05\x04\x06\x02\x01\x04\x12\x04<\x04;\x13\n\
+    \x0c\n\x05\x04\x06\x02\x01\x05\x12\x03<\x04\n\n\x0c\n\x05\x04\x06\x02\
+    \x01\x01\x12\x03<\x0b\x10\n\x0c\n\x05\x04\x06\x02\x01\x03\x12\x03<\x13\
+    \x14\n\x0b\n\x04\x04\x06\x02\x02\x12\x03=\x04\x16\n\r\n\x05\x04\x06\x02\
+    \x02\x04\x12\x04=\x04<\x15\n\x0c\n\x05\x04\x06\x02\x02\x05\x12\x03=\x04\
+    \n\n\x0c\n\x05\x04\x06\x02\x02\x01\x12\x03=\x0b\x11\n\x0c\n\x05\x04\x06\
+    \x02\x02\x03\x12\x03=\x14\x15\n\x0b\n\x04\x04\x06\x02\x03\x12\x03>\x04\
+    \x17\n\r\n\x05\x04\x06\x02\x03\x04\x12\x04>\x04=\x16\n\x0c\n\x05\x04\x06\
+    \x02\x03\x05\x12\x03>\x04\n\n\x0c\n\x05\x04\x06\x02\x03\x01\x12\x03>\x0b\
+    \x12\n\x0c\n\x05\x04\x06\x02\x03\x03\x12\x03>\x15\x16\n\x0b\n\x04\x04\
+    \x06\x02\x04\x12\x03?\x04\x19\n\r\n\x05\x04\x06\x02\x04\x04\x12\x04?\x04\
+    >\x17\n\x0c\n\x05\x04\x06\x02\x04\x05\x12\x03?\x04\n\n\x0c\n\x05\x04\x06\
+    \x02\x04\x01\x12\x03?\x0b\x14\n\x0c\n\x05\x04\x06\x02\x04\x03\x12\x03?\
+    \x17\x18\n\x0b\n\x04\x04\x06\x02\x05\x12\x03@\x04(\n\r\n\x05\x04\x06\x02\
+    \x05\x04\x12\x04@\x04?\x19\n\x0c\n\x05\x04\x06\x02\x05\x06\x12\x03@\x04\
+    \x16\n\x0c\n\x05\x04\x06\x02\x05\x01\x12\x03@\x17#\n\x0c\n\x05\x04\x06\
+    \x02\x05\x03\x12\x03@&'\n\n\n\x02\x04\x07\x12\x04C\0F\x01\n\n\n\x03\x04\
+    \x07\x01\x12\x03C\x08\x15\n\x0b\n\x04\x04\x07\x02\0\x12\x03D\x04\x15\n\r\
+    \n\x05\x04\x07\x02\0\x04\x12\x04D\x04C\x17\n\x0c\n\x05\x04\x07\x02\0\x06\
+    \x12\x03D\x04\x0b\n\x0c\n\x05\x04\x07\x02\0\x01\x12\x03D\x0c\x10\n\x0c\n\
+    \x05\x04\x07\x02\0\x03\x12\x03D\x13\x14\n\x0b\n\x04\x04\x07\x02\x01\x12\
+    \x03E\x04\x13\n\r\n\x05\x04\x07\x02\x01\x04\x12\x04E\x04D\x15\n\x0c\n\
+    \x05\x04\x07\x02\x01\x05\x12\x03E\x04\t\n\x0c\n\x05\x04\x07\x02\x01\x01\
+    \x12\x03E\n\x0e\n\x0c\n\x05\x04\x07\x02\x01\x03\x12\x03E\x11\x12\n\n\n\
+    \x02\x04\x08\x12\x04H\0I\x01\n\n\n\x03\x04\x08\x01\x12\x03H\x08\x16\n\n\
+    \n\x02\x04\t\x12\x04K\0N\x01\n\n\n\x03\x04\t\x01\x12\x03K\x08\x15\n\x0b\
+    \n\x04\x04\t\x02\0\x12\x03L\x04\x20\n\r\n\x05\x04\t\x02\0\x04\x12\x04L\
+    \x04K\x17\n\x0c\n\x05\x04\t\x02\0\x06\x12\x03L\x04\x13\n\x0c\n\x05\x04\t\
+    \x02\0\x01\x12\x03L\x14\x1b\n\x0c\n\x05\x04\t\x02\0\x03\x12\x03L\x1e\x1f\
+    \n\x0b\n\x04\x04\t\x02\x01\x12\x03M\x04\x15\n\r\n\x05\x04\t\x02\x01\x04\
+    \x12\x04M\x04L\x20\n\x0c\n\x05\x04\t\x02\x01\x06\x12\x03M\x04\x0b\n\x0c\
+    \n\x05\x04\t\x02\x01\x01\x12\x03M\x0c\x10\n\x0c\n\x05\x04\t\x02\x01\x03\
+    \x12\x03M\x13\x14\n\n\n\x02\x04\n\x12\x04P\0R\x01\n\n\n\x03\x04\n\x01\
+    \x12\x03P\x08\x16\n\x0b\n\x04\x04\n\x02\0\x12\x03Q\x04\x1c\n\r\n\x05\x04\
+    \n\x02\0\x04\x12\x04Q\x04P\x18\n\x0c\n\x05\x04\n\x02\0\x06\x12\x03Q\x04\
+    \x11\n\x0c\n\x05\x04\n\x02\0\x01\x12\x03Q\x12\x17\n\x0c\n\x05\x04\n\x02\
+    \0\x03\x12\x03Q\x1a\x1bb\x06proto3\
 ";
 
 static mut file_descriptor_proto_lazy: ::protobuf::lazy::Lazy<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::lazy::Lazy {

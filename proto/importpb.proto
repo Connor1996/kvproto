@@ -13,12 +13,14 @@ option (gogoproto.unmarshaler_all) = true;
 
 option java_package = "com.pingcap.tikv.kvproto";
 
-service Import {
+service DumpSST {
     rpc Write(stream WriteRequest) returns (WriteResponse) {}
     rpc Flush(FlushRequest) returns (FlushResponse) {}
+}
 
-    rpc UploadSST(stream UploadSSTRequest) returns (UploadSSTResponse) {}
-    rpc IngestSST(IngestSSTRequest) returns (IngestSSTResponse) {}
+service LoadSST {
+    rpc Upload(stream UploadRequest) returns (UploadResponse) {}
+    rpc Ingest(IngestRequest) returns (IngestResponse) {}
 }
 
 message Mutation {
@@ -54,7 +56,7 @@ message FlushRequest {
 message FlushResponse {
 }
 
-message SSTFileInfo {
+message SSTInfo {
     bytes uuid = 1;
     uint32 crc32 = 2;
     uint64 length = 3;
@@ -63,19 +65,19 @@ message SSTFileInfo {
     metapb.RegionEpoch region_epoch = 6;
 }
 
-message UploadSSTRequest {
-    SSTFileInfo info = 1;
+message UploadRequest {
+    SSTInfo info = 1;
     bytes data = 2;
 }
 
-message UploadSSTResponse {
+message UploadResponse {
 }
 
-message IngestSSTRequest {
+message IngestRequest {
     kvrpcpb.Context context = 1;
-    SSTFileInfo info = 2;
+    SSTInfo info = 2;
 }
 
-message IngestSSTResponse {
+message IngestResponse {
     errorpb.Error error = 1;
 }
