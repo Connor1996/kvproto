@@ -61,7 +61,7 @@ message Range {
     bytes end = 2;
 }
 
-message SSTInfo {
+message SSTMeta {
     bytes uuid = 1;
     Range range = 2;
     uint32 crc32 = 3;
@@ -72,7 +72,7 @@ message SSTInfo {
 }
 
 message UploadRequest {
-    SSTInfo info = 1;
+    SSTMeta meta = 1;
     bytes data = 2;
 }
 
@@ -81,7 +81,7 @@ message UploadResponse {
 
 message IngestRequest {
     kvrpcpb.Context context = 1;
-    SSTInfo info = 2;
+    SSTMeta meta = 2;
 }
 
 message IngestResponse {
