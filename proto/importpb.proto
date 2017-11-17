@@ -13,12 +13,12 @@ option (gogoproto.unmarshaler_all) = true;
 
 option java_package = "com.pingcap.tikv.kvproto";
 
-service DumpSST {
+service ImportKV {
     rpc Write(stream WriteRequest) returns (WriteResponse) {}
     rpc Flush(FlushRequest) returns (FlushResponse) {}
 }
 
-service LoadSST {
+service ImportSST {
     rpc Upload(stream UploadRequest) returns (UploadResponse) {}
     rpc Ingest(IngestRequest) returns (IngestResponse) {}
 }
