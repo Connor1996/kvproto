@@ -4,7 +4,6 @@ package importpb;
 
 import "metapb.proto";
 import "kvrpcpb.proto";
-import "errorpb.proto";
 import "gogoproto/gogo.proto";
 
 option (gogoproto.sizer_all) = true;
@@ -81,9 +80,8 @@ message UploadResponse {
 
 message IngestRequest {
     kvrpcpb.Context context = 1;
-    SSTMeta meta = 2;
+    SSTMeta sst = 2;
 }
 
 message IngestResponse {
-    errorpb.Error error = 1;
 }
