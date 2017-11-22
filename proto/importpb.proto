@@ -3,6 +3,7 @@ syntax = "proto3";
 package importpb;
 
 import "metapb.proto";
+import "errorpb.proto";
 import "kvrpcpb.proto";
 import "gogoproto/gogo.proto";
 
@@ -84,4 +85,5 @@ message IngestRequest {
 }
 
 message IngestResponse {
+    errorpb.Error error = 1;
 }
