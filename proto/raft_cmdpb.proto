@@ -55,7 +55,7 @@ message PrewriteRequest {
 message PrewriteResponse {}
 
 message IngestSSTRequest {
-    optional importpb.SSTMeta sst = 1;
+    importpb.SSTMeta sst = 1;
 }
 
 message IngestSSTResponse {
