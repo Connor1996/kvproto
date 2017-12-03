@@ -50,7 +50,6 @@ message WriteResponse {
 
 message FlushRequest {
     bytes uuid = 1;
-    string address = 2;
 }
 
 message FlushResponse {
