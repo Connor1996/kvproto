@@ -32,6 +32,13 @@ const METHOD_IMPORT_KV_FLUSH: ::grpcio::Method<super::importpb::FlushRequest, su
     resp_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
 };
 
+const METHOD_IMPORT_KV_IMPORT: ::grpcio::Method<super::importpb::ImportRequest, super::importpb::ImportResponse> = ::grpcio::Method {
+    ty: ::grpcio::MethodType::Unary,
+    name: "/importpb.ImportKV/Import",
+    req_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
+    resp_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
+};
+
 const METHOD_IMPORT_KV_CLEANUP: ::grpcio::Method<super::importpb::CleanupRequest, super::importpb::CleanupResponse> = ::grpcio::Method {
     ty: ::grpcio::MethodType::Unary,
     name: "/importpb.ImportKV/Cleanup",
@@ -74,6 +81,22 @@ impl ImportKvClient {
         self.flush_async_opt(req, ::grpcio::CallOption::default())
     }
 
+    pub fn import_opt(&self, req: super::importpb::ImportRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<super::importpb::ImportResponse> {
+        self.client.unary_call(&METHOD_IMPORT_KV_IMPORT, req, opt)
+    }
+
+    pub fn import(&self, req: super::importpb::ImportRequest) -> ::grpcio::Result<super::importpb::ImportResponse> {
+        self.import_opt(req, ::grpcio::CallOption::default())
+    }
+
+    pub fn import_async_opt(&self, req: super::importpb::ImportRequest, opt: ::grpcio::CallOption) -> ::grpcio::ClientUnaryReceiver<super::importpb::ImportResponse> {
+        self.client.unary_call_async(&METHOD_IMPORT_KV_IMPORT, req, opt)
+    }
+
+    pub fn import_async(&self, req: super::importpb::ImportRequest) -> ::grpcio::ClientUnaryReceiver<super::importpb::ImportResponse> {
+        self.import_async_opt(req, ::grpcio::CallOption::default())
+    }
+
     pub fn cleanup_opt(&self, req: super::importpb::CleanupRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<super::importpb::CleanupResponse> {
         self.client.unary_call(&METHOD_IMPORT_KV_CLEANUP, req, opt)
     }
@@ -97,6 +120,7 @@ impl ImportKvClient {
 pub trait ImportKv {
     fn write(&self, ctx: ::grpcio::RpcContext, stream: ::grpcio::RequestStream<super::importpb::WriteRequest>, sink: ::grpcio::ClientStreamingSink<super::importpb::WriteResponse>);
     fn flush(&self, ctx: ::grpcio::RpcContext, req: super::importpb::FlushRequest, sink: ::grpcio::UnarySink<super::importpb::FlushResponse>);
+    fn import(&self, ctx: ::grpcio::RpcContext, req: super::importpb::ImportRequest, sink: ::grpcio::UnarySink<super::importpb::ImportResponse>);
     fn cleanup(&self, ctx: ::grpcio::RpcContext, req: super::importpb::CleanupRequest, sink: ::grpcio::UnarySink<super::importpb::CleanupResponse>);
 }
 
@@ -109,6 +133,10 @@ pub fn create_import_kv<S: ImportKv + Send + Clone + 'static>(s: S) -> ::grpcio:
     let instance = s.clone();
     builder = builder.add_unary_handler(&METHOD_IMPORT_KV_FLUSH, move |ctx, req, resp| {
         instance.flush(ctx, req, resp)
+    });
+    let instance = s.clone();
+    builder = builder.add_unary_handler(&METHOD_IMPORT_KV_IMPORT, move |ctx, req, resp| {
+        instance.import(ctx, req, resp)
     });
     let instance = s.clone();
     builder = builder.add_unary_handler(&METHOD_IMPORT_KV_CLEANUP, move |ctx, req, resp| {
