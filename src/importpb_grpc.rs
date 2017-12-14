@@ -32,6 +32,13 @@ const METHOD_IMPORT_KV_FLUSH: ::grpcio::Method<super::importpb::FlushRequest, su
     resp_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
 };
 
+const METHOD_IMPORT_KV_CLEANUP: ::grpcio::Method<super::importpb::CleanupRequest, super::importpb::CleanupResponse> = ::grpcio::Method {
+    ty: ::grpcio::MethodType::Unary,
+    name: "/importpb.ImportKV/Cleanup",
+    req_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
+    resp_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
+};
+
 pub struct ImportKvClient {
     client: ::grpcio::Client,
 }
@@ -66,6 +73,22 @@ impl ImportKvClient {
     pub fn flush_async(&self, req: super::importpb::FlushRequest) -> ::grpcio::ClientUnaryReceiver<super::importpb::FlushResponse> {
         self.flush_async_opt(req, ::grpcio::CallOption::default())
     }
+
+    pub fn cleanup_opt(&self, req: super::importpb::CleanupRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<super::importpb::CleanupResponse> {
+        self.client.unary_call(&METHOD_IMPORT_KV_CLEANUP, req, opt)
+    }
+
+    pub fn cleanup(&self, req: super::importpb::CleanupRequest) -> ::grpcio::Result<super::importpb::CleanupResponse> {
+        self.cleanup_opt(req, ::grpcio::CallOption::default())
+    }
+
+    pub fn cleanup_async_opt(&self, req: super::importpb::CleanupRequest, opt: ::grpcio::CallOption) -> ::grpcio::ClientUnaryReceiver<super::importpb::CleanupResponse> {
+        self.client.unary_call_async(&METHOD_IMPORT_KV_CLEANUP, req, opt)
+    }
+
+    pub fn cleanup_async(&self, req: super::importpb::CleanupRequest) -> ::grpcio::ClientUnaryReceiver<super::importpb::CleanupResponse> {
+        self.cleanup_async_opt(req, ::grpcio::CallOption::default())
+    }
     pub fn spawn<F>(&self, f: F) where F: ::futures::Future<Item = (), Error = ()> + Send + 'static {
         self.client.spawn(f)
     }
@@ -74,6 +97,7 @@ impl ImportKvClient {
 pub trait ImportKv {
     fn write(&self, ctx: ::grpcio::RpcContext, stream: ::grpcio::RequestStream<super::importpb::WriteRequest>, sink: ::grpcio::ClientStreamingSink<super::importpb::WriteResponse>);
     fn flush(&self, ctx: ::grpcio::RpcContext, req: super::importpb::FlushRequest, sink: ::grpcio::UnarySink<super::importpb::FlushResponse>);
+    fn cleanup(&self, ctx: ::grpcio::RpcContext, req: super::importpb::CleanupRequest, sink: ::grpcio::UnarySink<super::importpb::CleanupResponse>);
 }
 
 pub fn create_import_kv<S: ImportKv + Send + Clone + 'static>(s: S) -> ::grpcio::Service {
@@ -85,6 +109,10 @@ pub fn create_import_kv<S: ImportKv + Send + Clone + 'static>(s: S) -> ::grpcio:
     let instance = s.clone();
     builder = builder.add_unary_handler(&METHOD_IMPORT_KV_FLUSH, move |ctx, req, resp| {
         instance.flush(ctx, req, resp)
+    });
+    let instance = s.clone();
+    builder = builder.add_unary_handler(&METHOD_IMPORT_KV_CLEANUP, move |ctx, req, resp| {
+        instance.cleanup(ctx, req, resp)
     });
     builder.build()
 }

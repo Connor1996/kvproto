@@ -16,6 +16,7 @@ option java_package = "com.pingcap.tikv.kvproto";
 service ImportKV {
     rpc Write(stream WriteRequest) returns (WriteResponse) {}
     rpc Flush(FlushRequest) returns (FlushResponse) {}
+    rpc Cleanup(CleanupRequest) returns (CleanupResponse) {}
 }
 
 service ImportSST {
@@ -53,6 +54,13 @@ message FlushRequest {
 }
 
 message FlushResponse {
+}
+
+message CleanupRequest {
+    bytes uuid = 1;
+}
+
+message CleanupResponse {
 }
 
 message Range {
