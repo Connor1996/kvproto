@@ -25,13 +25,6 @@ const METHOD_IMPORT_KV_WRITE: ::grpcio::Method<super::importpb::WriteRequest, su
     resp_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
 };
 
-const METHOD_IMPORT_KV_FLUSH: ::grpcio::Method<super::importpb::FlushRequest, super::importpb::FlushResponse> = ::grpcio::Method {
-    ty: ::grpcio::MethodType::Unary,
-    name: "/importpb.ImportKV/Flush",
-    req_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
-    resp_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
-};
-
 const METHOD_IMPORT_KV_CLOSE: ::grpcio::Method<super::importpb::CloseRequest, super::importpb::CloseResponse> = ::grpcio::Method {
     ty: ::grpcio::MethodType::Unary,
     name: "/importpb.ImportKV/Close",
@@ -70,22 +63,6 @@ impl ImportKvClient {
 
     pub fn write(&self) -> (::grpcio::ClientCStreamSender<super::importpb::WriteRequest>, ::grpcio::ClientCStreamReceiver<super::importpb::WriteResponse>) {
         self.write_opt(::grpcio::CallOption::default())
-    }
-
-    pub fn flush_opt(&self, req: super::importpb::FlushRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<super::importpb::FlushResponse> {
-        self.client.unary_call(&METHOD_IMPORT_KV_FLUSH, req, opt)
-    }
-
-    pub fn flush(&self, req: super::importpb::FlushRequest) -> ::grpcio::Result<super::importpb::FlushResponse> {
-        self.flush_opt(req, ::grpcio::CallOption::default())
-    }
-
-    pub fn flush_async_opt(&self, req: super::importpb::FlushRequest, opt: ::grpcio::CallOption) -> ::grpcio::ClientUnaryReceiver<super::importpb::FlushResponse> {
-        self.client.unary_call_async(&METHOD_IMPORT_KV_FLUSH, req, opt)
-    }
-
-    pub fn flush_async(&self, req: super::importpb::FlushRequest) -> ::grpcio::ClientUnaryReceiver<super::importpb::FlushResponse> {
-        self.flush_async_opt(req, ::grpcio::CallOption::default())
     }
 
     pub fn close_opt(&self, req: super::importpb::CloseRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<super::importpb::CloseResponse> {
@@ -142,7 +119,6 @@ impl ImportKvClient {
 
 pub trait ImportKv {
     fn write(&self, ctx: ::grpcio::RpcContext, stream: ::grpcio::RequestStream<super::importpb::WriteRequest>, sink: ::grpcio::ClientStreamingSink<super::importpb::WriteResponse>);
-    fn flush(&self, ctx: ::grpcio::RpcContext, req: super::importpb::FlushRequest, sink: ::grpcio::UnarySink<super::importpb::FlushResponse>);
     fn close(&self, ctx: ::grpcio::RpcContext, req: super::importpb::CloseRequest, sink: ::grpcio::UnarySink<super::importpb::CloseResponse>);
     fn import(&self, ctx: ::grpcio::RpcContext, req: super::importpb::ImportRequest, sink: ::grpcio::UnarySink<super::importpb::ImportResponse>);
     fn delete(&self, ctx: ::grpcio::RpcContext, req: super::importpb::DeleteRequest, sink: ::grpcio::UnarySink<super::importpb::DeleteResponse>);
@@ -153,10 +129,6 @@ pub fn create_import_kv<S: ImportKv + Send + Clone + 'static>(s: S) -> ::grpcio:
     let instance = s.clone();
     builder = builder.add_client_streaming_handler(&METHOD_IMPORT_KV_WRITE, move |ctx, req, resp| {
         instance.write(ctx, req, resp)
-    });
-    let instance = s.clone();
-    builder = builder.add_unary_handler(&METHOD_IMPORT_KV_FLUSH, move |ctx, req, resp| {
-        instance.flush(ctx, req, resp)
     });
     let instance = s.clone();
     builder = builder.add_unary_handler(&METHOD_IMPORT_KV_CLOSE, move |ctx, req, resp| {

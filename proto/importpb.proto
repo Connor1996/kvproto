@@ -15,7 +15,6 @@ option java_package = "com.pingcap.tikv.kvproto";
 
 service ImportKV {
     rpc Write(stream WriteRequest) returns (WriteResponse) {}
-    rpc Flush(FlushRequest) returns (FlushResponse) {}
     rpc Close(CloseRequest) returns (CloseResponse) {}
     rpc Import(ImportRequest) returns (ImportResponse) {}
     rpc Delete(DeleteRequest) returns (DeleteResponse) {}
@@ -40,22 +39,20 @@ message WriteBatch {
     repeated Mutation mutations = 2;
 }
 
+message WriteOptions {
+    bool flush = 1;
+}
+
 message WriteRequest {
     message Head {
         bytes uuid = 1;
     }
     Head head = 1;
     WriteBatch batch = 2;
+    WriteOptions options = 3;
 }
 
 message WriteResponse {
-}
-
-message FlushRequest {
-    bytes uuid = 1;
-}
-
-message FlushResponse {
 }
 
 message CloseRequest {
