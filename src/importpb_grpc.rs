@@ -57,59 +57,59 @@ impl ImportKvClient {
         }
     }
 
-    pub fn write_opt(&self, opt: ::grpcio::CallOption) -> (::grpcio::ClientCStreamSender<super::importpb::WriteRequest>, ::grpcio::ClientCStreamReceiver<super::importpb::WriteResponse>) {
+    pub fn write_opt(&self, opt: ::grpcio::CallOption) -> ::grpcio::Result<(::grpcio::ClientCStreamSender<super::importpb::WriteRequest>, ::grpcio::ClientCStreamReceiver<super::importpb::WriteResponse>)> {
         self.client.client_streaming(&METHOD_IMPORT_KV_WRITE, opt)
     }
 
-    pub fn write(&self) -> (::grpcio::ClientCStreamSender<super::importpb::WriteRequest>, ::grpcio::ClientCStreamReceiver<super::importpb::WriteResponse>) {
+    pub fn write(&self) -> ::grpcio::Result<(::grpcio::ClientCStreamSender<super::importpb::WriteRequest>, ::grpcio::ClientCStreamReceiver<super::importpb::WriteResponse>)> {
         self.write_opt(::grpcio::CallOption::default())
     }
 
-    pub fn close_opt(&self, req: super::importpb::CloseRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<super::importpb::CloseResponse> {
+    pub fn close_opt(&self, req: &super::importpb::CloseRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<super::importpb::CloseResponse> {
         self.client.unary_call(&METHOD_IMPORT_KV_CLOSE, req, opt)
     }
 
-    pub fn close(&self, req: super::importpb::CloseRequest) -> ::grpcio::Result<super::importpb::CloseResponse> {
+    pub fn close(&self, req: &super::importpb::CloseRequest) -> ::grpcio::Result<super::importpb::CloseResponse> {
         self.close_opt(req, ::grpcio::CallOption::default())
     }
 
-    pub fn close_async_opt(&self, req: super::importpb::CloseRequest, opt: ::grpcio::CallOption) -> ::grpcio::ClientUnaryReceiver<super::importpb::CloseResponse> {
+    pub fn close_async_opt(&self, req: &super::importpb::CloseRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::importpb::CloseResponse>> {
         self.client.unary_call_async(&METHOD_IMPORT_KV_CLOSE, req, opt)
     }
 
-    pub fn close_async(&self, req: super::importpb::CloseRequest) -> ::grpcio::ClientUnaryReceiver<super::importpb::CloseResponse> {
+    pub fn close_async(&self, req: &super::importpb::CloseRequest) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::importpb::CloseResponse>> {
         self.close_async_opt(req, ::grpcio::CallOption::default())
     }
 
-    pub fn import_opt(&self, req: super::importpb::ImportRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<super::importpb::ImportResponse> {
+    pub fn import_opt(&self, req: &super::importpb::ImportRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<super::importpb::ImportResponse> {
         self.client.unary_call(&METHOD_IMPORT_KV_IMPORT, req, opt)
     }
 
-    pub fn import(&self, req: super::importpb::ImportRequest) -> ::grpcio::Result<super::importpb::ImportResponse> {
+    pub fn import(&self, req: &super::importpb::ImportRequest) -> ::grpcio::Result<super::importpb::ImportResponse> {
         self.import_opt(req, ::grpcio::CallOption::default())
     }
 
-    pub fn import_async_opt(&self, req: super::importpb::ImportRequest, opt: ::grpcio::CallOption) -> ::grpcio::ClientUnaryReceiver<super::importpb::ImportResponse> {
+    pub fn import_async_opt(&self, req: &super::importpb::ImportRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::importpb::ImportResponse>> {
         self.client.unary_call_async(&METHOD_IMPORT_KV_IMPORT, req, opt)
     }
 
-    pub fn import_async(&self, req: super::importpb::ImportRequest) -> ::grpcio::ClientUnaryReceiver<super::importpb::ImportResponse> {
+    pub fn import_async(&self, req: &super::importpb::ImportRequest) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::importpb::ImportResponse>> {
         self.import_async_opt(req, ::grpcio::CallOption::default())
     }
 
-    pub fn delete_opt(&self, req: super::importpb::DeleteRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<super::importpb::DeleteResponse> {
+    pub fn delete_opt(&self, req: &super::importpb::DeleteRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<super::importpb::DeleteResponse> {
         self.client.unary_call(&METHOD_IMPORT_KV_DELETE, req, opt)
     }
 
-    pub fn delete(&self, req: super::importpb::DeleteRequest) -> ::grpcio::Result<super::importpb::DeleteResponse> {
+    pub fn delete(&self, req: &super::importpb::DeleteRequest) -> ::grpcio::Result<super::importpb::DeleteResponse> {
         self.delete_opt(req, ::grpcio::CallOption::default())
     }
 
-    pub fn delete_async_opt(&self, req: super::importpb::DeleteRequest, opt: ::grpcio::CallOption) -> ::grpcio::ClientUnaryReceiver<super::importpb::DeleteResponse> {
+    pub fn delete_async_opt(&self, req: &super::importpb::DeleteRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::importpb::DeleteResponse>> {
         self.client.unary_call_async(&METHOD_IMPORT_KV_DELETE, req, opt)
     }
 
-    pub fn delete_async(&self, req: super::importpb::DeleteRequest) -> ::grpcio::ClientUnaryReceiver<super::importpb::DeleteResponse> {
+    pub fn delete_async(&self, req: &super::importpb::DeleteRequest) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::importpb::DeleteResponse>> {
         self.delete_async_opt(req, ::grpcio::CallOption::default())
     }
     pub fn spawn<F>(&self, f: F) where F: ::futures::Future<Item = (), Error = ()> + Send + 'static {
@@ -170,27 +170,27 @@ impl ImportSstClient {
         }
     }
 
-    pub fn upload_opt(&self, opt: ::grpcio::CallOption) -> (::grpcio::ClientCStreamSender<super::importpb::UploadRequest>, ::grpcio::ClientCStreamReceiver<super::importpb::UploadResponse>) {
+    pub fn upload_opt(&self, opt: ::grpcio::CallOption) -> ::grpcio::Result<(::grpcio::ClientCStreamSender<super::importpb::UploadRequest>, ::grpcio::ClientCStreamReceiver<super::importpb::UploadResponse>)> {
         self.client.client_streaming(&METHOD_IMPORT_SST_UPLOAD, opt)
     }
 
-    pub fn upload(&self) -> (::grpcio::ClientCStreamSender<super::importpb::UploadRequest>, ::grpcio::ClientCStreamReceiver<super::importpb::UploadResponse>) {
+    pub fn upload(&self) -> ::grpcio::Result<(::grpcio::ClientCStreamSender<super::importpb::UploadRequest>, ::grpcio::ClientCStreamReceiver<super::importpb::UploadResponse>)> {
         self.upload_opt(::grpcio::CallOption::default())
     }
 
-    pub fn ingest_opt(&self, req: super::importpb::IngestRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<super::importpb::IngestResponse> {
+    pub fn ingest_opt(&self, req: &super::importpb::IngestRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<super::importpb::IngestResponse> {
         self.client.unary_call(&METHOD_IMPORT_SST_INGEST, req, opt)
     }
 
-    pub fn ingest(&self, req: super::importpb::IngestRequest) -> ::grpcio::Result<super::importpb::IngestResponse> {
+    pub fn ingest(&self, req: &super::importpb::IngestRequest) -> ::grpcio::Result<super::importpb::IngestResponse> {
         self.ingest_opt(req, ::grpcio::CallOption::default())
     }
 
-    pub fn ingest_async_opt(&self, req: super::importpb::IngestRequest, opt: ::grpcio::CallOption) -> ::grpcio::ClientUnaryReceiver<super::importpb::IngestResponse> {
+    pub fn ingest_async_opt(&self, req: &super::importpb::IngestRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::importpb::IngestResponse>> {
         self.client.unary_call_async(&METHOD_IMPORT_SST_INGEST, req, opt)
     }
 
-    pub fn ingest_async(&self, req: super::importpb::IngestRequest) -> ::grpcio::ClientUnaryReceiver<super::importpb::IngestResponse> {
+    pub fn ingest_async(&self, req: &super::importpb::IngestRequest) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::importpb::IngestResponse>> {
         self.ingest_async_opt(req, ::grpcio::CallOption::default())
     }
     pub fn spawn<F>(&self, f: F) where F: ::futures::Future<Item = (), Error = ()> + Send + 'static {
