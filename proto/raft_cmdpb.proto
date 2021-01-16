@@ -13,7 +13,7 @@ option (rustproto.lite_runtime_all) = true;
 option java_package = "org.tikv.kvproto";
 
 message GetRequest {
-    string cf = 1;
+    uint32 cf = 1;
     bytes key = 2;
     uint32 prefix_len = 3;
 }
@@ -23,7 +23,7 @@ message GetResponse {
 }
 
 message PutRequest {
-    string cf = 1;
+    uint32 cf = 1;
     bytes key = 2;
     uint32 prefix_len = 4;
     bytes value = 3;
@@ -32,7 +32,7 @@ message PutRequest {
 message PutResponse {}
 
 message DeleteRequest {
-    string cf = 1;
+    uint32 cf = 1;
     bytes key = 2;
     uint32 prefix_len = 3;
 }
@@ -40,7 +40,7 @@ message DeleteRequest {
 message DeleteResponse {}
 
 message DeleteRangeRequest {
-    string cf = 1;
+    uint32 cf = 1;
     bytes start_key = 2;
     bytes end_key = 3;
     bool notify_only = 4;
