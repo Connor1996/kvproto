@@ -58,7 +58,6 @@ message PrewriteRequest {
     bytes key = 1;
     bytes value = 2;
     bytes lock = 3;
-    metapb.StoreLabel request_label = 4;
 }
 
 message PrewriteResponse {}
@@ -335,6 +334,8 @@ message RaftCmdRequest {
     repeated Request requests = 2;
     AdminRequest admin_request = 3;
     StatusRequest status_request = 4;
+    metapb.StoreLabel request_label = 5;
+    uint64 write_size = 6;
 }
 
 message RaftCmdResponse {
