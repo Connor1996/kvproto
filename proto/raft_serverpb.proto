@@ -28,6 +28,7 @@ message RaftMessage {
 message RaftTruncatedState {
     uint64 index = 1;
     uint64 term = 2;
+    bytes last_key = 3;
 }
 
 message SnapshotCFFile {
@@ -39,7 +40,8 @@ message SnapshotCFFile {
 message SnapshotMeta {
     repeated SnapshotCFFile cf_files = 1;
     // true means this snapshot is triggered for load balance
-    bool for_balance = 2; 
+    bool for_balance = 2;
+    bytes last_key = 3;
 }
 
 message SnapshotChunk {
