@@ -284,6 +284,7 @@ message Member {
     uint64 member_id = 2;
     repeated string peer_urls = 3;
     repeated string client_urls = 4;
+    repeated string inner_client_urls = 10;
     int32 leader_priority = 5;
     string deploy_path = 6;
     string binary_version = 7;
