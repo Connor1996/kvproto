@@ -348,6 +348,7 @@ message RaftRequestHeader {
     bytes flag_data = 11;
 
     kvrpcpb.CommandPri priority = 12;
+    bytes resource_group_tag = 13;
 }
 
 message RaftResponseHeader {
